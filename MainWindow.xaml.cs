@@ -43,3 +43,4 @@ namespace Calendar
         }
     }
 }
+///Ogarniete dodanie Entity, standardowego uzytkownika, nadanie mu prawa do INSERT,SELECT,DELETE,UPDATE. Teraz bedzie jazda z zalogowaniem sie do niego.
