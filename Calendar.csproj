@@ -102,7 +102,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EventModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Events.cs">
+    <Compile Include="EventsTable.cs">
       <DependentUpon>EventModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">

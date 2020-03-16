@@ -29,7 +29,7 @@ namespace Calendar
         private void button_Click(object sender, RoutedEventArgs e)
         {
             EventsDBContext db = new EventsDBContext();
-            var contents = db.Events;
+            var contents = db.EventsTables;
             foreach (var item in contents)
                 label.Content = item.Day;
         }
@@ -43,4 +43,4 @@ namespace Calendar
         }
     }
 }
-///Ogarniete dodanie Entity, standardowego uzytkownika, nadanie mu prawa do INSERT,SELECT,DELETE,UPDATE. Teraz bedzie jazda z zalogowaniem sie do niego.
+///Ogarniete dodanie Entity, standardowego uzytkownika, nadanie mu prawa do INSERT,SELECT,DELETE,UPDATE do tabeli events. Teraz bedzie jazda z zalogowaniem sie do niego.

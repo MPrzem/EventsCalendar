@@ -25,6 +25,6 @@ namespace Calendar
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Events> Events { get; set; }
+        public virtual DbSet<EventsTable> EventsTables { get; set; }
     }
 }

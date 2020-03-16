@@ -12,7 +12,7 @@ namespace Calendar
     using System;
     using System.Collections.Generic;
     
-    public partial class Events
+    public partial class EventsTable
     {
         public int Id { get; set; }
         public Nullable<int> Day { get; set; }
