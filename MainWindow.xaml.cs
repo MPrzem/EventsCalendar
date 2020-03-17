@@ -33,6 +33,10 @@ namespace Calendar
             foreach (var item in contents)
                 label.Content = item.Day;
         }
+        /// <summary>
+        /// Jedyne co tu sie dzieje to pobranie rekordow(wszystkich=jednego)
+        /// z BD przez entity po nacisnieciu przycisku
+        /// </summary>
 
         private void GetProperlyDirectory()
         {
