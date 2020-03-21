@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" MinHeight="400" MinWidth="800" Width="800" Height="400" ResizeMode="CanResize" SizeToContent="WidthAndHeight" Background="#FF2D2D30" >
     <DockPanel>
-        <Grid Height="58" DockPanel.Dock="Top" >
+        <Border BorderThickness="0,0,0,4" BorderBrush="Blue" DockPanel.Dock="Top">
+        <Grid Height="58"  >
             <Grid.ColumnDefinitions >
                 <ColumnDefinition Width="80"></ColumnDefinition>
                 <ColumnDefinition Width="561*"></ColumnDefinition>
@@ -16,18 +17,19 @@
             <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="25,21,24,21"> Menu</TextBlock>
             <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="342,21,190,21"> DATA</TextBlock>
         </Grid>
+        </Border>
         <Grid DockPanel.Dock="Bottom" Name="CalendarGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" MinWidth="120"></ColumnDefinition>
                 <ColumnDefinition Width="1*" MinWidth="120"></ColumnDefinition>
                 <ColumnDefinition x:Name="CalendarColumn" Width="2*" ></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <GridSplitter Grid.Column ="0" Background="Blue" Width="5"
+            <GridSplitter Grid.Column ="0" Background="Blue" Width="4"
                 HorizontalAlignment="Right" VerticalAlignment="Stretch"/>
             <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Pogoda</TextBlock>
             <TextBlock Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center">Wydarzenia dnia</TextBlock>
-            <Viewbox Grid.Column="2" Height="{Binding ElementName=CalendarGrid, Path=ActualHeight}">
-                <Calendar>
+            <Viewbox Grid.Column="2" Height="{Binding ElementName=CalendarGrid, Path=ActualHeight}" HorizontalAlignment="Right">
+                <Calendar HorizontalAlignment="Left">
                     <Calendar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FF22272C" Offset="0"/>
