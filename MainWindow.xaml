@@ -5,10 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calendar"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="278,187,0,0" VerticalAlignment="Top" Width="211" Height="47" Click="button_Click"/>
-        <Label x:Name="label" Content="sasasasaassa&#xD;&#xA;" HorizontalAlignment="Left" Margin="234,102,0,0" VerticalAlignment="Top" Height="61" Width="342"/>
-
+        Title="MainWindow" MinHeight="400" MinWidth="800" ResizeMode="CanResize" SizeToContent="WidthAndHeight" >
+    <DockPanel>
+        <Grid Height="58" DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="80"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"> Menu</TextBlock>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"> DATA</TextBlock>
+        </Grid>
+    <Grid DockPanel.Dock="Left">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="3*" ></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" HorizontalAlignment="Center"  VerticalAlignment="Center">Wydarzenia dnia</TextBlock>
+            <Calendar Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Calendar>
+        <!--
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="895,91,-314,0" VerticalAlignment="Top" Width="211" Height="47" Click="button_Click"/>
+        <Label x:Name="label" Content="sasasasaassa&#xD;&#xA;" HorizontalAlignment="Left" Margin="923,186,-473,0" VerticalAlignment="Top" Height="61" Width="342"/>
+-->
     </Grid>
+    </DockPanel>
 </Window>

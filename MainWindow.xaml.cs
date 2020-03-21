@@ -31,7 +31,7 @@ namespace Calendar
             EventsDBContext db = new EventsDBContext();
             var contents = db.EventsTables;
             foreach (var item in contents)
-                label.Content = item.Day;
+                ;//label.Content = item.Day;
         }
         /// <summary>
         /// Jedyne co tu sie dzieje to pobranie rekordow(wszystkich=jednego)
