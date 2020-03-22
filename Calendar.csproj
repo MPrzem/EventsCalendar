@@ -162,6 +162,7 @@
       <DependentUpon>EventModel.edmx</DependentUpon>
       <LastGenOutput>EventModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Images\menu.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

@@ -4,19 +4,53 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calendar"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" MinHeight="400" MinWidth="800" Width="800" Height="400" ResizeMode="CanResize" SizeToContent="WidthAndHeight" Background="#FF2D2D30" >
     <DockPanel>
-        <Border BorderThickness="0,0,0,4" BorderBrush="Blue" DockPanel.Dock="Top">
-        <Grid Height="58"  >
-            <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="80"></ColumnDefinition>
-                <ColumnDefinition Width="561*"></ColumnDefinition>
-                <ColumnDefinition Width="151*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="25,21,24,21"> Menu</TextBlock>
-            <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="342,21,190,21"> DATA</TextBlock>
-        </Grid>
+        <Border BorderThickness="0,0,0,1" BorderBrush="Blue" DockPanel.Dock="Top">
+            <Grid Height="58"  >
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Menu HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0">
+                    <MenuItem  Height="58" Width="80" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Padding="0" BorderBrush="{x:Null}" BorderThickness="0" FontFamily="Segoe UI Historic" FontSize="18" Background="#FF2D2D30" Foreground="White">
+                        <MenuItem.Header>
+                            <Canvas  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                                <TextBlock Text="Menu" FontSize="20" 
+               FontFamily="BigNoodleTitling" Canvas.Top="0" Canvas.Left="2" Foreground="Black" />
+                                <TextBlock Text="Menu" FontSize="20" Foreground="Black"
+               FontFamily="BigNoodleTitling" Canvas.Top="0" Canvas.Left="4" />
+                                <TextBlock Text="Menu" FontSize="20" Foreground="Black"
+               FontFamily="BigNoodleTitling" Canvas.Top="2" Canvas.Left="2"  />
+                                <TextBlock Text="Menu" FontSize="20" Foreground="Black"
+               FontFamily="BigNoodleTitling" Canvas.Top="2" Canvas.Left="4" />
+                                <TextBlock Text="Menu" FontSize="20" 
+               FontFamily="BigNoodleTitling" Canvas.Top="1" Canvas.Left="3"
+               Foreground="White" />
+                            </Canvas>
+                        </MenuItem.Header>
+                        <MenuItem.Icon >
+                            <Image Source="C:\Users\Student241580\source\repos\Calendar\Images\menu.png" Stretch="Fill"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </Menu>
+                <Canvas  HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding Source={x:Static sys:DateTime.Now }}" Grid.Column="1" Margin="-340,-39,0,0">
+                    <TextBlock Text="{Binding StringFormat='{}{0:yyyy.MM.dd HH:mm}' }" FontSize="36" 
+               FontFamily="BigNoodleTitling" Canvas.Top="0" Canvas.Left="2" Foreground="Black" />
+                    <TextBlock Text="{Binding StringFormat='{}{0:yyyy.MM.dd HH:mm}' }" FontSize="36" Foreground="Black"
+               FontFamily="BigNoodleTitling" Canvas.Top="0" Canvas.Left="4" />
+                    <TextBlock Text="{Binding StringFormat='{}{0:yyyy.MM.dd HH:mm}' }" FontSize="36" Foreground="Black"
+               FontFamily="BigNoodleTitling" Canvas.Top="2" Canvas.Left="2"  />
+                    <TextBlock Text="{Binding StringFormat='{}{0:yyyy.MM.dd HH:mm}' }" FontSize="36" Foreground="Black"
+               FontFamily="BigNoodleTitling" Canvas.Top="2" Canvas.Left="4" />
+                    <TextBlock Text="{Binding StringFormat='{}{0:yyyy.MM.dd HH:mm}' }" FontSize="36" 
+               FontFamily="BigNoodleTitling" Canvas.Left="4"
+               Foreground="White" />
+                </Canvas>
+            </Grid>
         </Border>
         <Grid DockPanel.Dock="Bottom" Name="CalendarGrid">
             <Grid.ColumnDefinitions>
@@ -24,7 +58,7 @@
                 <ColumnDefinition Width="1*" MinWidth="120"></ColumnDefinition>
                 <ColumnDefinition x:Name="CalendarColumn" Width="2*" ></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <GridSplitter Grid.Column ="0" Background="Blue" Width="4"
+            <GridSplitter Grid.Column ="0" Background="Blue" Width="2"
                 HorizontalAlignment="Right" VerticalAlignment="Stretch"/>
             <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Pogoda</TextBlock>
             <TextBlock Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center">Wydarzenia dnia</TextBlock>
