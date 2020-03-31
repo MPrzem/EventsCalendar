@@ -60,8 +60,50 @@
             </Grid.ColumnDefinitions>
             <GridSplitter Grid.Column ="0" Background="Blue" Width="2"
                 HorizontalAlignment="Right" VerticalAlignment="Stretch"/>
-            <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Pogoda</TextBlock>
-            <TextBlock Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center">Wydarzenia dnia</TextBlock>
+
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="6" />
+                    
+                   
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="140"/>
+                    <RowDefinition Height="5"/>
+                    
+                    
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Foreground="White" FontSize="20">  Miasto :</TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row ="1" HorizontalAlignment="Left"  VerticalAlignment="Center" Foreground="White" FontSize="15">  Temperatura :</TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row ="2" HorizontalAlignment="Left"  VerticalAlignment="Center" Foreground="White" FontSize="15">  Wilgotność :</TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row ="3" HorizontalAlignment="Left"  VerticalAlignment="Center" Foreground="White" FontSize="15">  Ciśnienie :</TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row ="4" HorizontalAlignment="Left"  VerticalAlignment="Center" Foreground="White" FontSize="15">  Wiatr :</TextBlock>
+                <Image Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center"  VerticalAlignment="Center" />
+
+                <TextBox Name="cityTextBox" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" TextChanged="CityTextBox_TextChanged" />
+                <TextBox Name="temperatureTextBox" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" />
+                <TextBox Name="humidityTextBox" Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" />
+                <TextBox Name="pressureTextBox" Grid.Column="1" Grid.Row="3"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" />
+                <TextBox Name="windSpeedTextBox" Grid.Column="1" Grid.Row="4"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" />
+
+                <Button  Name="showWeather" Grid.Column="1" Grid.Row="5" Content="Pokaż pogodę" HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" Background="#FF575050" Foreground="White" Click="ShowWeather_Click"/>
+
+                <!-- <DataGrid Grid.Column="1" Grid.Row="7"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="135" Width="200" Background="#FF777777" Foreground="White" BorderBrush="{x:Null}"/>
+                -->
+            </Grid>
+
+            <TextBlock Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center">Wydarzenia dnia : </TextBlock>
+            
             <Viewbox Grid.Column="2" Height="{Binding ElementName=CalendarGrid, Path=ActualHeight}" HorizontalAlignment="Right">
                 <Calendar HorizontalAlignment="Left">
                     <Calendar.Background>
@@ -74,6 +116,8 @@
                     </Calendar.Background>
                 </Calendar>
             </Viewbox>
+            
+
             <!--
         <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="895,91,-314,0" VerticalAlignment="Top" Width="211" Height="47" Click="button_Click"/>
         <Label x:Name="label" Content="sasasasaassa&#xD;&#xA;" HorizontalAlignment="Left" Margin="923,186,-473,0" VerticalAlignment="Top" Height="61" Width="342"/>
