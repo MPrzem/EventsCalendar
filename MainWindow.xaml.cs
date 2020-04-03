@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Net;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json;
+using System.Drawing;
 
 
 namespace Calendar
@@ -68,16 +69,21 @@ namespace Calendar
         {
             using (WebClient web = new WebClient())
             {
+                // CityName z TextBoxa , apiKey na stałe
                 string cityName = cityTextBox.Text.ToString();
+                string apiKey = "8b7c4545e3874014261a301b43f9d144";
 
-                string url = string.Format("http://api.openweathermap.org/data/2.5/weather?appid=8b7c4545e3874014261a301b43f9d144&q={0}",cityName);
+                // Pełny link z apiKey oraz miastem
+                string url = string.Format("http://api.openweathermap.org/data/2.5/weather?appid={0}&q={1}",apiKey,cityName);
 
                 var json = web.DownloadString(url);
 
+                // Json Conventer i kawał super roboty, który odwala w poniższej linijce
                 var result = JsonConvert.DeserializeObject<weatherinfo.root>(json);
 
                 weatherinfo.root outPut = result;
 
+                // Wyświetlanie danych o pogodzie
                 string temperature = string.Format("{0}", Math.Round(outPut.main.temp-273,2));
                 string humidity = string.Format("{0}",outPut.main.humidity);
                 string pressure = string.Format("{0}", outPut.main.pressure);
@@ -87,6 +93,20 @@ namespace Calendar
                 humidityTextBox.Text = humidity + " %";
                 pressureTextBox.Text = pressure + " hPa";
                 windSpeedTextBox.Text = windSpeed + " m/s";
+
+                // Walka z wyświetlaniem obrazka pogody
+
+                string imageId = string.Format("{0}", outPut.weather[0].icon);
+                string fullImageUrl = string.Format("https://openweathermap.org/img/wn/{0}@2x.png",imageId);
+
+                var bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(fullImageUrl);
+                bitmap.EndInit();
+
+                weatherLogo.Source = bitmap;
+
+
             }
         }
 

@@ -88,16 +88,19 @@
                 <TextBlock Grid.Column="1" Grid.Row ="2" HorizontalAlignment="Left"  VerticalAlignment="Center" Foreground="White" FontSize="15">  Wilgotność :</TextBlock>
                 <TextBlock Grid.Column="1" Grid.Row ="3" HorizontalAlignment="Left"  VerticalAlignment="Center" Foreground="White" FontSize="15">  Ciśnienie :</TextBlock>
                 <TextBlock Grid.Column="1" Grid.Row ="4" HorizontalAlignment="Left"  VerticalAlignment="Center" Foreground="White" FontSize="15">  Wiatr :</TextBlock>
-                <Image Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center"  VerticalAlignment="Center" />
+                
 
-                <TextBox Name="cityTextBox" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" TextChanged="CityTextBox_TextChanged" />
-                <TextBox Name="temperatureTextBox" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" />
-                <TextBox Name="humidityTextBox" Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" />
-                <TextBox Name="pressureTextBox" Grid.Column="1" Grid.Row="3"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" />
-                <TextBox Name="windSpeedTextBox" Grid.Column="1" Grid.Row="4"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" />
+                <TextBox Name="cityTextBox" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" TextChanged="CityTextBox_TextChanged" Background="#FF2D2D30" BorderBrush="#FFA20000" Foreground="White" />
+                <TextBox Name="temperatureTextBox" Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" Background="#FF2D2D30" Foreground="White" BorderBrush="#FF2D2D30"/>
+                <TextBox Name="humidityTextBox" Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" Background="#FF2D2D30" Foreground="White" BorderBrush="#FF2D2D30" />
+                <TextBox Name="pressureTextBox" Grid.Column="1" Grid.Row="3"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" Background="#FF2D2D30" Foreground="White" BorderBrush="#FF2D2D30"/>
+                <TextBox Name="windSpeedTextBox" Grid.Column="1" Grid.Row="4"  HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" Background="#FF2D2D30" Foreground="White" BorderBrush="#FF2D2D30"/>
 
                 <Button  Name="showWeather" Grid.Column="1" Grid.Row="5" Content="Pokaż pogodę" HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" Background="#FF575050" Foreground="White" Click="ShowWeather_Click"/>
 
+                <Image x:Name="weatherLogo" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center"  VerticalAlignment="Center" />
+                 
+                
                 <!-- <DataGrid Grid.Column="1" Grid.Row="7"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="135" Width="200" Background="#FF777777" Foreground="White" BorderBrush="{x:Null}"/>
                 -->
             </Grid>
