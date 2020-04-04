@@ -20,6 +20,7 @@ using System.Drawing;
 
 namespace Calendar
 {
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -28,6 +29,7 @@ namespace Calendar
 
         public MainWindow()
         {
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             GetProperlyDirectory();
         }
@@ -111,12 +113,28 @@ namespace Calendar
         }
 
         /// <summary>
-        /// Text Box City 
+        /// City Text Box , niechcacy kliknałem , po usunieciu tego fragmentu nie kompiluje sie :-( , jakis problem z visualem ???
+        /// mimo ze usuwam rowniez z xmla fragment kodu dotyczacy tego text boxa
         /// </summary>
 
         private void CityTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        /// <summary>
+        /// Pokazywanie prognozy pogody
+        /// </summary>
+
+        private void ShowForecast_Click(object sender, RoutedEventArgs e)
+        {
+            // Zmienna potrzebna do przekazania nazwy miasta z poprzedniego okienka 
+
+            string cityName = cityTextBox.Text.ToString();
+
+                weatherForecast sW = new weatherForecast(cityName);
+                sW.Show();
+            
         }
     }
 }

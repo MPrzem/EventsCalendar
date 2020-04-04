@@ -89,6 +89,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EventModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="weatherforecast.cs" />
+    <Compile Include="weatherForecast.xaml.cs">
+      <DependentUpon>weatherForecast.xaml</DependentUpon>
+    </Compile>
     <Compile Include="weatherinfo.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -115,6 +119,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="weatherForecast.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
