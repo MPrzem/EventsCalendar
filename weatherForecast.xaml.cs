@@ -17,29 +17,32 @@ using Newtonsoft.Json;
 namespace Calendar
 {
     /// <summary>
-    /// Logika interakcji dla klasy weatherForecast.xaml
+    /// Interaction logic for weatherForecast.xaml
     /// </summary>
     public partial class weatherForecast : Window
     {
+        /// <summary>
+        /// WebClient dla prognozy pogody 
+        /// </summary>
         public WebClient web2 = new WebClient();
 
-        // Zmienna potrzebna do przekazania nazwy miasta z poprzedniego okienka 
+        // Zmienna potrzebna do pobrania nazwy miasta z głównego okienka
         public string cityNameFromFirstPage { get; set; }
 
         public weatherForecast(string passCityName)
         {
+            // Przypisanie odpowiednim zmiennym w klasie odpowiednich wartosci
             this.cityNameFromFirstPage = passCityName;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
             InitializeComponent();
 
-            // Żeby uniknąć sytuacji, zamykamy okno główne, a child okno zostaje 
-
+            // Żeby uniknąć sytuacji niepożądanej -> zamykamy okno główne, a child okno zostaje 
             Window mainWindow = Application.Current.MainWindow;
             if (mainWindow != null)
                 mainWindow.Closed += (s, e) => Close();
 
             getForecast(cityNameFromFirstPage,web2);
-
         }
 
         /// <summary>
@@ -49,17 +52,14 @@ namespace Calendar
         void getForecast(string cityNameFromFirstPage,WebClient web)
         {
 
-                // ApiKey na stałe
+                // ApiKey na stałe oraz pełny link z apiKey oraz miastem
                 string apiKey = "8b7c4545e3874014261a301b43f9d144";
-
-                // Pełny link z apiKey oraz miastem
                 string url = string.Format("http://api.openweathermap.org/data/2.5/forecast?q={0}&appid={1}", cityNameFromFirstPage, apiKey);
 
                 handleWrongCitynames tmp = new handleWrongCitynames();
 
-                // Obsluga bledu 404
+                // Obsluga bledu 404 oraz innych  innych wynikajacych ze źle wpisanego miasta , a wlasciwie jego nazwy 
                 bool decision = tmp.checkUrl(url);
-                //bool decision = false;
 
                 if (decision == true)
                 {
@@ -115,7 +115,8 @@ namespace Calendar
         }
 
         /// <summary>
-        /// Milisekundy na date, okazuje sie po zrozumieniu jsona z forecast ze chyba niepotrzebny 
+        /// Milisekundy na date, okazuje sie po zrozumieniu klasy wygenerowanej z neta 
+        /// Json to C# , ze chyba funkcja ta jest jednak niepotrzebna
         /// </summary>
         DateTime getDate(double millisecound)
         {

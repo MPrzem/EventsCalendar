@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Calendar
 {
+    /// <summary>
+    /// Json to C# dla prognozy pogody
+    /// </summary>
     class weatherforecast
     {
         public class Main

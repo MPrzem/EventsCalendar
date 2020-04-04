@@ -26,7 +26,9 @@ namespace Calendar
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        /// <summary>
+        /// WebClient dla aktualnej pogody 
+        /// </summary>
         public WebClient web = new WebClient();
 
         public MainWindow()
@@ -80,9 +82,8 @@ namespace Calendar
             // Pełny link z apiKey oraz miastem
             string url = string.Format("http://api.openweathermap.org/data/2.5/weather?appid={0}&q={1}", apiKey, cityName);
 
-            // Obsługa błędu 404 wynikającego ze źle wpisanego miasta , a wlasciwie jego nazwy 
+            // Obsługa błędu 404 oraz innych wynikajacych ze źle wpisanego miasta , a wlasciwie jego nazwy 
             bool decision = tmp.checkUrl(url);
-            //bool decision = false;
 
             if (decision == true)
             {
@@ -92,7 +93,6 @@ namespace Calendar
             else
             {
                     var json = web.DownloadString(url);
-
 
                     // Json Conventer i kawał super roboty, który odwala w poniższej linijce
                     var result = JsonConvert.DeserializeObject<weatherinfo.root>(json);
@@ -121,7 +121,6 @@ namespace Calendar
                     bitmap.EndInit();
 
                     weatherLogo.Source = bitmap;
-
             }
         }
 
@@ -136,18 +135,17 @@ namespace Calendar
         }
 
         /// <summary>
-        /// Pokazywanie prognozy pogody
+        /// Otwieranie nowegho okna z prognoza pogody
         /// </summary>
 
         private void ShowForecast_Click(object sender, RoutedEventArgs e)
         {
-            // Zmienna potrzebna do przekazania nazwy miasta z poprzedniego okienka 
-
+            // Zmienna potrzebna do przekazania nazwy miasta do nowego okienka
             string cityName = cityTextBox.Text.ToString();
 
+                // Tworzenie nowego okienka
                 weatherForecast sW = new weatherForecast(cityName);
-                sW.Show();
-            
+                sW.Show();      
         }
     }
 }

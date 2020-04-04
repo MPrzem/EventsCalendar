@@ -11,6 +11,7 @@ namespace Calendar
     {
         /// <summary>
         /// Funkcja sprawdzajaca czy nie wystapil blad 404 i inne 
+        /// związane z komunikacją ze stroną API 
         /// </summary>
         public bool checkUrl(string url)
         {
