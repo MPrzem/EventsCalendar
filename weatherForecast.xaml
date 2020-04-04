@@ -14,21 +14,24 @@
         </Grid.ColumnDefinitions>
         
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <Button Name="goBack" Grid.Column="0" Grid.Row="5" Content="Zamknij to okno" VerticalAlignment="Center" HorizontalAlignment="Center"  Width="100"  Background="#FF575050" Foreground="White" Click="GoBack_Click"/>
+        <TextBox Name="cityTextBox" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Background="#FF2D2D30" Foreground="White" BorderBrush="#FFA20000" />
 
-        <TextBox Name="forecast1TextBox" Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Background="#FF2D2D30" Foreground="White" BorderBrush="#FF2D2D30"/>
-        <TextBox Name="forecast2TextBox" Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Background="#FF2D2D30" Foreground="White" BorderBrush="#FF2D2D30"/>
-        <TextBox Name="forecast3TextBox" Grid.Column="0" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Background="#FF2D2D30" Foreground="White" BorderBrush="#FF2D2D30"/>
-        <TextBox Name="forecast4TextBox" Grid.Column="0" Grid.Row="3"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Background="#FF2D2D30" Foreground="White" BorderBrush="#FF2D2D30"/>
-        <TextBox Name="forecast5TextBox" Grid.Column="0" Grid.Row="4"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Background="#FF2D2D30" Foreground="White" BorderBrush="#FF2D2D30"/>
+        <Button Name="goBack" Grid.Column="0" Grid.Row="6" Content="Zamknij to okno" VerticalAlignment="Center" HorizontalAlignment="Center"  Width="100"  Background="#FF575050" Foreground="White" Click="GoBack_Click"/>
+        
+        <TextBox Name="forecast1TextBox" Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Background="#FF2D2D30" Foreground="White" BorderBrush="#FF2D2D30"/>
+        <TextBox Name="forecast2TextBox" Grid.Column="0" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Background="#FF2D2D30" Foreground="White" BorderBrush="#FF2D2D30"/>
+        <TextBox Name="forecast3TextBox" Grid.Column="0" Grid.Row="3"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Background="#FF2D2D30" Foreground="White" BorderBrush="#FF2D2D30"/>
+        <TextBox Name="forecast4TextBox" Grid.Column="0" Grid.Row="4"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Background="#FF2D2D30" Foreground="White" BorderBrush="#FF2D2D30"/>
+        <TextBox Name="forecast5TextBox" Grid.Column="0" Grid.Row="5"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Background="#FF2D2D30" Foreground="White" BorderBrush="#FF2D2D30"/>
         
     </Grid>
 </Window>

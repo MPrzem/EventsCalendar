@@ -69,46 +69,62 @@ namespace Calendar
 
         void getWeather()
         {
-            using (WebClient web = new WebClient())
+            handleWrongCitynames tmp = new handleWrongCitynames ();
+
+            // CityName z TextBoxa , apiKey na stałe
+            string cityName = cityTextBox.Text.ToString();
+            string apiKey = "8b7c4545e3874014261a301b43f9d144";
+
+            // Pełny link z apiKey oraz miastem
+            string url = string.Format("http://api.openweathermap.org/data/2.5/weather?appid={0}&q={1}", apiKey, cityName);
+
+            // Obsługa błędu 404 wynikającego ze źle wpisanego miasta , a wlasciwie jego nazwy 
+            bool decision = tmp.checkUrl(url);
+            //bool decision = false;
+
+            if (decision == true)
             {
-                // CityName z TextBoxa , apiKey na stałe
-                string cityName = cityTextBox.Text.ToString();
-                string apiKey = "8b7c4545e3874014261a301b43f9d144";
+                MessageBox.Show("Prawdopodobnie pomyliłeś się przy wpisywaniu nazwy miasta ! \nSpróbuj ponownie");
+            }
 
-                // Pełny link z apiKey oraz miastem
-                string url = string.Format("http://api.openweathermap.org/data/2.5/weather?appid={0}&q={1}",apiKey,cityName);
+            else
+            {
+                using (WebClient web = new WebClient())
+                {
 
-                var json = web.DownloadString(url);
-
-                // Json Conventer i kawał super roboty, który odwala w poniższej linijce
-                var result = JsonConvert.DeserializeObject<weatherinfo.root>(json);
-
-                weatherinfo.root outPut = result;
-
-                // Wyświetlanie danych o pogodzie
-                string temperature = string.Format("{0}", Math.Round(outPut.main.temp-273,2));
-                string humidity = string.Format("{0}",outPut.main.humidity);
-                string pressure = string.Format("{0}", outPut.main.pressure);
-                string windSpeed = string.Format("{0}", outPut.wind.speed);
-
-                temperatureTextBox.Text=temperature+ " °C";
-                humidityTextBox.Text = humidity + " %";
-                pressureTextBox.Text = pressure + " hPa";
-                windSpeedTextBox.Text = windSpeed + " m/s";
-
-                // Walka z wyświetlaniem obrazka pogody
-
-                string imageId = string.Format("{0}", outPut.weather[0].icon);
-                string fullImageUrl = string.Format("https://openweathermap.org/img/wn/{0}@2x.png",imageId);
-
-                var bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.UriSource = new Uri(fullImageUrl);
-                bitmap.EndInit();
-
-                weatherLogo.Source = bitmap;
+                    var json = web.DownloadString(url);
 
 
+                    // Json Conventer i kawał super roboty, który odwala w poniższej linijce
+                    var result = JsonConvert.DeserializeObject<weatherinfo.root>(json);
+
+                    weatherinfo.root outPut = result;
+
+                    // Wyświetlanie danych o pogodzie
+                    string temperature = string.Format("{0}", Math.Round(outPut.main.temp - 273, 2));
+                    string humidity = string.Format("{0}", outPut.main.humidity);
+                    string pressure = string.Format("{0}", outPut.main.pressure);
+                    string windSpeed = string.Format("{0}", outPut.wind.speed);
+
+                    temperatureTextBox.Text = temperature + " °C";
+                    humidityTextBox.Text = humidity + " %";
+                    pressureTextBox.Text = pressure + " hPa";
+                    windSpeedTextBox.Text = windSpeed + " m/s";
+
+                    // Walka z wyświetlaniem obrazka pogody
+
+                    string imageId = string.Format("{0}", outPut.weather[0].icon);
+                    string fullImageUrl = string.Format("https://openweathermap.org/img/wn/{0}@2x.png", imageId);
+
+                    var bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri(fullImageUrl);
+                    bitmap.EndInit();
+
+                    weatherLogo.Source = bitmap;
+
+
+                }
             }
         }
 
