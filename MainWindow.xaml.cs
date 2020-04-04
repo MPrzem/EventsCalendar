@@ -27,6 +27,8 @@ namespace Calendar
     public partial class MainWindow : Window
     {
 
+        public WebClient web = new WebClient();
+
         public MainWindow()
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -60,14 +62,14 @@ namespace Calendar
 
         private void ShowWeather_Click(object sender, RoutedEventArgs e)
         {
-            getWeather();
+            getWeather(web);
         }
 
         /// <summary>
         /// Pobieranie pogody API , Json , OpenWeather
         /// </summary>
 
-        void getWeather()
+        void getWeather(WebClient web)
         {
             handleWrongCitynames tmp = new handleWrongCitynames ();
 
@@ -89,9 +91,6 @@ namespace Calendar
 
             else
             {
-                using (WebClient web = new WebClient())
-                {
-
                     var json = web.DownloadString(url);
 
 
@@ -123,8 +122,6 @@ namespace Calendar
 
                     weatherLogo.Source = bitmap;
 
-
-                }
             }
         }
 
