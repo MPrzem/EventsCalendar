@@ -52,10 +52,10 @@
                 </Canvas>
             </Grid>
         </Border>
-        <Grid DockPanel.Dock="Bottom" Name="CalendarGrid">
+        <Grid DockPanel.Dock="Bottom" Name="CalendarGrid" RenderTransformOrigin="0.5,0.5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" MinWidth="120"></ColumnDefinition>
-                <ColumnDefinition Width="1*" MinWidth="120"></ColumnDefinition>
+                <ColumnDefinition Width="1.2*" MinWidth="120"></ColumnDefinition>
+                <ColumnDefinition Width="1.4*" MinWidth="120"></ColumnDefinition>
                 <ColumnDefinition x:Name="CalendarColumn" Width="2*" ></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <GridSplitter Grid.Column ="0" Background="Blue" Width="2"
@@ -107,8 +107,7 @@
                 -->
             </Grid>
 
-            <TextBlock Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center">Wydarzenia dnia : </TextBlock>
-            
+            <ListBox Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}, Path=Background}" Grid.Column="1" BorderBrush="{x:Null}" x:Name="EventsListBox" ></ListBox>
             <Viewbox Grid.Column="2" Height="{Binding ElementName=CalendarGrid, Path=ActualHeight}" HorizontalAlignment="Right">
                 <Calendar HorizontalAlignment="Left">
                     <Calendar.Background>

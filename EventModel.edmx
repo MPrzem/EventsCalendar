@@ -5,15 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="EventsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="EventsTable">
+        <EntityType Name="Table">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Day" Type="int" />
+          <Property Name="sdsa" Type="nchar" MaxLength="10" />
+          <Property Name="sadas213" Type="nchar" MaxLength="10" />
+          <Property Name="213" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityContainer Name="EventsModelStoreContainer">
-          <EntitySet Name="EventsTable" EntityType="Self.EventsTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -21,6 +23,7 @@
       <Schema Namespace="EventsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="EventsDBContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="EventsTables" EntityType="EventsModel.EventsTable" />
+          <EntitySet Name="Tables" EntityType="EventsModel.Table" />
         </EntityContainer>
         <EntityType Name="EventsTable">
           <Key>
@@ -29,16 +32,27 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Day" Type="Int32" />
         </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="sdsa" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="sadas213" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="C213" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="EventsModelStoreContainer" CdmEntityContainer="EventsDBContext">
-          <EntitySetMapping Name="EventsTables">
-            <EntityTypeMapping TypeName="EventsModel.EventsTable">
-              <MappingFragment StoreEntitySet="EventsTable">
-                <ScalarProperty Name="Day" ColumnName="Day" />
+          <EntitySetMapping Name="Tables">
+            <EntityTypeMapping TypeName="EventsModel.Table">
+              <MappingFragment StoreEntitySet="Table">
+                <ScalarProperty Name="C213" ColumnName="213" />
+                <ScalarProperty Name="sadas213" ColumnName="sadas213" />
+                <ScalarProperty Name="sdsa" ColumnName="sdsa" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

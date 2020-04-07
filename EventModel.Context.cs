@@ -26,5 +26,6 @@ namespace Calendar
         }
     
         public virtual DbSet<EventsTable> EventsTables { get; set; }
+        public virtual DbSet<Table> Tables { get; set; }
     }
 }

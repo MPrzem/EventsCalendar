@@ -89,7 +89,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EventModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EventsCollection.cs" />
     <Compile Include="handleWrongCitynames.cs" />
+    <Compile Include="Table.cs">
+      <DependentUpon>EventModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="weatherforecast.cs" />
     <Compile Include="weatherForecast.xaml.cs">
       <DependentUpon>weatherForecast.xaml</DependentUpon>
