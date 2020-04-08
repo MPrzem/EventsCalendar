@@ -30,12 +30,15 @@ namespace Calendar
         /// WebClient dla aktualnej pogody 
         /// </summary>
         public WebClient web = new WebClient();
+        public EventsCollections collections = new EventsCollections();
+
 
         public MainWindow()
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             GetProperlyDirectory();
+            this.DataContext = collections;
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -147,13 +150,18 @@ namespace Calendar
 
         private void button_Click_1(object sender, RoutedEventArgs e)
         {
+            collections.ClearDailyEvents();
             BazaDanychEntities context = new BazaDanychEntities();
            //context.EventsTypes.Add(new EventsTypes() { Color1 = "Blue", Color2 = "Blue", Id = 1, Name = "Typ1" });
             //context.SaveChanges();
-            context.Events.Add(new Events() { Name = "XD", Id = 1, StartDate = new DateTime(), EndDate = new DateTime(), TypeID = 1 });
+            context.Events.Add(new Events() { Name = "Takietam", Id = 1, StartDate = new DateTime(2019, 12, 11), EndDate = new DateTime(), TypeID = 1, Note= "SASDasd" });
             context.SaveChanges();
-            string a=context.Events.Find(1).EventsTypes.Color1;
+            DateTime date = new DateTime(2019, 12, 11);
+            var akuku  = context.Events.Where(s => s.StartDate ==date);
+            collections.FillDailyEvents(akuku);
+            
          }
+
     }
 }
 ///Ogarniete dodanie Entity, standardowego uzytkownika, nadanie mu prawa do INSERT,SELECT,DELETE,UPDATE do tabeli events. Teraz bedzie jazda z zalogowaniem sie do niego.
