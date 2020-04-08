@@ -84,16 +84,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="EventModel.cs">
+    <Compile Include="CalendarDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EventModel.tt</DependentUpon>
+      <DependentUpon>CalendarDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CalendarDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CalendarDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CalendarDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CalendarDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Events.cs">
+      <DependentUpon>CalendarDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EventsCollection.cs" />
-    <Compile Include="handleWrongCitynames.cs" />
-    <Compile Include="Table.cs">
-      <DependentUpon>EventModel.tt</DependentUpon>
+    <Compile Include="EventsTypes.cs">
+      <DependentUpon>CalendarDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="handleWrongCitynames.cs" />
     <Compile Include="weatherforecast.cs" />
     <Compile Include="weatherForecast.xaml.cs">
       <DependentUpon>weatherForecast.xaml</DependentUpon>
@@ -106,19 +119,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="EventModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EventModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EventModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EventModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="EventsTable.cs">
-      <DependentUpon>EventModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -147,12 +147,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="EventModel.edmx">
+    <EntityDeploy Include="CalendarDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EventModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>CalendarDataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="EventModel.edmx.diagram">
-      <DependentUpon>EventModel.edmx</DependentUpon>
+    <None Include="CalendarDataModel.edmx.diagram">
+      <DependentUpon>CalendarDataModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -171,15 +171,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>BazaDanych.mdf</DependentUpon>
     </Content>
-    <Content Include="EventModel.Context.tt">
+    <Content Include="CalendarDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EventModel.Context.cs</LastGenOutput>
-      <DependentUpon>EventModel.edmx</DependentUpon>
+      <DependentUpon>CalendarDataModel.edmx</DependentUpon>
+      <LastGenOutput>CalendarDataModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="EventModel.tt">
+    <Content Include="CalendarDataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EventModel.edmx</DependentUpon>
-      <LastGenOutput>EventModel.cs</LastGenOutput>
+      <DependentUpon>CalendarDataModel.edmx</DependentUpon>
+      <LastGenOutput>CalendarDataModel.cs</LastGenOutput>
     </Content>
     <Resource Include="Images\menu.png" />
   </ItemGroup>
@@ -198,5 +198,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

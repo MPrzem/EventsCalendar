@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Calendar
 {
-    public class Event
+    public class CalendarEvents
     {
         public TypeProperties typ_prop;
         public IndividualEventProperties indiv_prop;// Moze tu powinny być interfejsy ale chyba przerost formy nad treścią bla bla bla
-        public Event(TypeProperties typP,IndividualEventProperties indivP)
+        public CalendarEvents(TypeProperties typP,IndividualEventProperties indivP)
         {
             typ_prop = typP;
             indiv_prop = indivP;
@@ -35,9 +35,10 @@ namespace Calendar
     }
     public class IndividualEventProperties///Te pobierane z bazy danych
     {
+        public String Name { get; private set; }
         public DateTime TimeStart { get; private set; }
         public DateTime TimeEnd { get; private set; }
-        String Note;
+        public String Note { get; private set; }
 
 
     }
@@ -45,7 +46,7 @@ namespace Calendar
     public class EventsCollections
     {
         ////Zeby nie pobierac eventów z całej histori weszechswiata pobierane beda po wybraniu konkretnego dnia
-        ObservableCollection<Event> DailyEventList;
+        ObservableCollection<CalendarEvents> DailyEventList;
         ObservableCollection<TypeProperties> TypesList; // Pobierane z tabeli typów i dodawane do niej w UI
 
       public void GenerateDailyEventsFromDB()

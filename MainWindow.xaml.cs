@@ -40,10 +40,7 @@ namespace Calendar
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            EventsDBContext db = new EventsDBContext();
-            var contents = db.EventsTables;
-            foreach (var item in contents)
-                ;//label.Content = item.Day;
+
         }
         /// <summary>
         /// Jedyne co tu sie dzieje to pobranie rekordow(wszystkich=jednego)
@@ -147,6 +144,16 @@ namespace Calendar
                 weatherForecast sW = new weatherForecast(cityName);
                 sW.Show();      
         }
+
+        private void button_Click_1(object sender, RoutedEventArgs e)
+        {
+            BazaDanychEntities context = new BazaDanychEntities();
+           //context.EventsTypes.Add(new EventsTypes() { Color1 = "Blue", Color2 = "Blue", Id = 1, Name = "Typ1" });
+            //context.SaveChanges();
+            context.Events.Add(new Events() { Name = "XD", Id = 1, StartDate = new DateTime(), EndDate = new DateTime(), TypeID = 1 });
+            context.SaveChanges();
+            string a=context.Events.Find(1).EventsTypes.Color1;
+         }
     }
 }
 ///Ogarniete dodanie Entity, standardowego uzytkownika, nadanie mu prawa do INSERT,SELECT,DELETE,UPDATE do tabeli events. Teraz bedzie jazda z zalogowaniem sie do niego.
