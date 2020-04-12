@@ -38,7 +38,7 @@ namespace Calendar
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             GetProperlyDirectory();
-            this.DataContext = collections;
+            this.DataContext = this.collections ;
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -152,16 +152,20 @@ namespace Calendar
         {
             collections.ClearDailyEvents();
             BazaDanychEntities context = new BazaDanychEntities();
-           //context.EventsTypes.Add(new EventsTypes() { Color1 = "Blue", Color2 = "Blue", Id = 1, Name = "Typ1" });
+            //context.EventsTypes.Add(new EventsTypes() { Color1 = "Blue", Color2 = "Blue", Id = 1, Name = "Typ1" });
+           // context.SaveChanges();
+           /// context.Events.Add(new Events() { Name = "Takietam", Id = 1, StartDate = new DateTime(2019, 12, 11), EndDate = new DateTime(), TypeID = 1, Note= "SASDasd" });
             //context.SaveChanges();
-            context.Events.Add(new Events() { Name = "Takietam", Id = 1, StartDate = new DateTime(2019, 12, 11), EndDate = new DateTime(), TypeID = 1, Note= "SASDasd" });
-            context.SaveChanges();
             DateTime date = new DateTime(2019, 12, 11);
             var akuku  = context.Events.Where(s => s.StartDate ==date);
             collections.FillDailyEvents(akuku);
             
          }
 
+        private void EventsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
 ///Ogarniete dodanie Entity, standardowego uzytkownika, nadanie mu prawa do INSERT,SELECT,DELETE,UPDATE do tabeli events. Teraz bedzie jazda z zalogowaniem sie do niego.

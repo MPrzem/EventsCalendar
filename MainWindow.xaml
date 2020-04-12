@@ -12,7 +12,8 @@
             <Grid Height="58"  >
                 <Grid.ColumnDefinitions >
                     <ColumnDefinition Width="80"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="548*"></ColumnDefinition>
+                    <ColumnDefinition Width="165*"/>
                 </Grid.ColumnDefinitions>
 
                 <Menu HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0">
@@ -38,7 +39,7 @@
                         </MenuItem.Icon>
                     </MenuItem>
                 </Menu>
-                <Canvas  HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding Source={x:Static sys:DateTime.Now }}" Grid.Column="1" Margin="-340,-39,0,0">
+                <Canvas  HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding Source={x:Static sys:DateTime.Now }}" Grid.Column="1" Margin="186,10,361.5,48">
                     <TextBlock Text="{Binding StringFormat='{}{0:yyyy.MM.dd HH:mm}' }" FontSize="36" 
                FontFamily="BigNoodleTitling" Canvas.Top="0" Canvas.Left="2" Foreground="Black" />
                     <TextBlock Text="{Binding StringFormat='{}{0:yyyy.MM.dd HH:mm}' }" FontSize="36" Foreground="Black"
@@ -55,8 +56,8 @@
         </Border>
         <Grid DockPanel.Dock="Bottom" Name="CalendarGrid" RenderTransformOrigin="0.5,0.5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.2*" MinWidth="120"></ColumnDefinition>
-                <ColumnDefinition Width="1.4*" MinWidth="120"></ColumnDefinition>
+                <ColumnDefinition Width="1.2*" MinWidth="110"></ColumnDefinition>
+                <ColumnDefinition Width="1.4*" MinWidth="230"></ColumnDefinition>
                 <ColumnDefinition x:Name="CalendarColumn" Width="2*" ></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <GridSplitter Grid.Column ="0" Background="Blue" Width="2"
@@ -67,8 +68,8 @@
                     <ColumnDefinition Width="6" />
                     <ColumnDefinition />
                     <ColumnDefinition Width="6" />
-                    
-                   
+
+
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -81,8 +82,8 @@
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="5"/>
-                    
-                    
+
+
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"  VerticalAlignment="Center" Foreground="White" FontSize="20">  Miasto :</TextBlock>
@@ -103,15 +104,36 @@
                 <Image x:Name="weatherLogo" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center"  VerticalAlignment="Center" />
 
                 <Button  Name="showForecast" Grid.Column="1" Grid.Row="8" Content="Prognoza pogody" HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" Background="#FF575050" Foreground="White" Click="ShowForecast_Click"/>
-                
+
                 <!-- <DataGrid Grid.Column="1" Grid.Row="7"  HorizontalAlignment="Center" VerticalAlignment="Center" Height="135" Width="200" Background="#FF777777" Foreground="White" BorderBrush="{x:Null}"/>
                 -->
             </Grid>
+            <ListBox ItemsSource="{Binding Path=DailyEventList}" ScrollViewer.VerticalScrollBarVisibility="Auto" MaxHeight="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=ActualHeight}" ScrollViewer.CanContentScroll="True" Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}, Path=Background}" Grid.Column="1" BorderBrush="{x:Null}" x:Name="EventsListBox" SelectionChanged="EventsListBox_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="{Binding Path=typ_prop.ColorOnList}" MinWidth="210">
+                                <Grid.ColumnDefinitions >
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="{Binding Path=indiv_prop.Name}" Grid.Row="0"/>
+                                <TextBlock Text="{Binding Path=typ_prop.TypeName}" Grid.Column="1" Grid.Row="0"/>
+                                <TextBlock Text="{Binding Path=indiv_prop.TimeStart, StringFormat=\\ \\ O\\d hh:mm}" Grid.Column="1" Grid.Row="1"/>
+                                <TextBlock Text="{Binding Path=indiv_prop.TimeEnd, StringFormat=\\ \\ Do hh:mm}" Grid.Column="2" Grid.Row="1"/>
 
-            <ListBox Background="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}, Path=Background}" Grid.Column="1" BorderBrush="{x:Null}" x:Name="EventsListBox" >
-                <Button x:Name="button" Content="Button" Width="75" Click="button_Click_1"/>
-            </ListBox>
-            <Viewbox Grid.Column="2" Height="{Binding ElementName=CalendarGrid, Path=ActualHeight}" HorizontalAlignment="Right">
+                                <TextBlock FontSize="12" Text="{Binding Path=indiv_prop.Note}" Grid.Row="1" Grid.Column="0"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <Viewbox Grid.Column="2" Height="{Binding ElementName=CalendarGrid, Path=ActualHeight}" HorizontalAlignment="Right">
                 <Calendar HorizontalAlignment="Left">
                     <Calendar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -123,7 +145,7 @@
                     </Calendar.Background>
                 </Calendar>
             </Viewbox>
-            
+
 
             <!--
         <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="895,91,-314,0" VerticalAlignment="Top" Width="211" Height="47" Click="button_Click"/>

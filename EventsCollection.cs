@@ -9,8 +9,10 @@ namespace Calendar
 {
     public class CalendarEvent
     {
-        public TypeProperties typ_prop;
-        public IndividualEventProperties indiv_prop;// Moze tu powinny być interfejsy ale chyba przerost formy nad treścią bla bla bla
+        private TypeProperties _typ_prop;
+        public TypeProperties typ_prop { get { return _typ_prop; } set { _typ_prop = value; } }
+        public IndividualEventProperties indiv_prop { get { return _indiv_prop; } set { _indiv_prop=value; } }
+        private IndividualEventProperties _indiv_prop;// Moze tu powinny być interfejsy ale chyba przerost formy nad treścią bla bla bla
         public CalendarEvent(TypeProperties typP,IndividualEventProperties indivP)
         {
             typ_prop = typP;
@@ -29,7 +31,7 @@ namespace Calendar
         {
             ColorOnCalendar = colorOnCalendar;
             ColorOnList = colorOnList;
-            TypeName = typeName;
+            TypeName = "Group: "+typeName;
         }
 
     }
@@ -42,10 +44,10 @@ namespace Calendar
 
         public IndividualEventProperties(string name,DateTime start,DateTime end, string Note)
         {
-            Name = name;
+            Name ="Name: "+ name+" ";
             TimeStart = start;
             TimeEnd = end;
-            this.Note = Note;
+            this.Note ="Note: "+ Note+" ";
 
         }
 
@@ -55,9 +57,11 @@ namespace Calendar
     public class EventsCollections
     {
         ////Zeby nie pobierac eventów z całej histori weszechswiata pobierane beda po wybraniu konkretnego dnia
-        ObservableCollection<CalendarEvent> DailyEventList = new ObservableCollection<CalendarEvent>();
-        ObservableCollection<TypeProperties> TypesList = new ObservableCollection<TypeProperties>(); // Pobierane z tabeli typów i dodawane do niej w UI
+        private ObservableCollection<CalendarEvent> _DailyEventList = new ObservableCollection<CalendarEvent>();
+        private ObservableCollection<TypeProperties> _TypesList = new ObservableCollection<TypeProperties>(); // Pobierane z tabeli typów i dodawane do niej w UI
 
+        public ObservableCollection<CalendarEvent> DailyEventList { get { return _DailyEventList; } set { value = _DailyEventList; }}
+        public ObservableCollection<TypeProperties> TypesList { get { return _TypesList; } set { value = _TypesList; } }
 
         public void FillDailyEvents(IQueryable<Events> events)
         {
