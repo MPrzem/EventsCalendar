@@ -16,8 +16,8 @@
                     <ColumnDefinition Width="165*"/>
                 </Grid.ColumnDefinitions>
 
-                <Menu HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0">
-                    <MenuItem  Height="58" Width="80" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Padding="0" BorderBrush="{x:Null}" BorderThickness="0" FontFamily="Segoe UI Historic" FontSize="18" Background="#FF2D2D30" Foreground="White">
+                <Menu HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" Background="#FF2D2D30">
+                    <MenuItem  Height="58" Width="80" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Center" Padding="0" BorderBrush="{x:Null}" BorderThickness="0" FontFamily="Segoe UI Historic" FontSize="18"  Foreground="White">
                         <MenuItem.Header>
                             <Canvas  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
                                 <TextBlock Text="Menu" FontSize="20" 
@@ -33,10 +33,26 @@
                Foreground="White" />
                             </Canvas>
                         </MenuItem.Header>
+                        
                         <MenuItem.Icon >
                             <Image Source="/Images/menu.png" Stretch="Fill" />
 
                         </MenuItem.Icon>
+                        <MenuItem Background="#FF2D2D30">
+                            <MenuItem.Header>
+                                <TextBlock Text="Dodaj Wydarzenie" Foreground="White" />
+                            </MenuItem.Header>
+                        </MenuItem >
+                        <MenuItem Background="#FF2D2D30">
+                            <MenuItem.Header>
+                                <TextBlock Text="Usuń Wydarzenie" Foreground="White"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+                        <MenuItem Background="#FF2D2D30">
+                            <MenuItem.Header>
+                                <TextBlock Text="Edytuj Wydarzenie" Foreground="White"/>
+                            </MenuItem.Header>
+                        </MenuItem>
                     </MenuItem>
                 </Menu>
                 <Canvas  HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding Source={x:Static sys:DateTime.Now }}" Grid.Column="1" Margin="186,10,361.5,48">
@@ -134,7 +150,7 @@
                 </ListBox>
 
                 <Viewbox Grid.Column="2" Height="{Binding ElementName=CalendarGrid, Path=ActualHeight}" HorizontalAlignment="Right">
-                <Calendar HorizontalAlignment="Left">
+                <Calendar HorizontalAlignment="Left" SelectedDatesChanged="EventsListBox_SelectionChanged" x:Name="CalendarContol">
                     <Calendar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#FF22272C" Offset="0"/>

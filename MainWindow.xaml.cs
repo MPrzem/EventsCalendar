@@ -165,6 +165,15 @@ namespace Calendar
         private void EventsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+            collections.ClearDailyEvents();
+            BazaDanychEntities context = new BazaDanychEntities();
+
+            var calendar = sender as System.Windows.Controls.Calendar;
+               
+
+                            var akuku = context.Events.Where(s => s.StartDate == calendar.SelectedDate);
+            collections.FillDailyEvents(akuku);
+
         }
     }
 }
