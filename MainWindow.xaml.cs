@@ -26,6 +26,7 @@ namespace Calendar
     /// </summary>
     public partial class MainWindow : Window
     {
+
         /// <summary>
         /// WebClient dla aktualnej pogody 
         /// </summary>
@@ -38,6 +39,9 @@ namespace Calendar
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             GetProperlyDirectory();
+            if (CalendarContol.SelectedDate == null)
+                CalendarContol.SelectedDate = DateTime.Now;
+                (new Window1(CalendarContol.SelectedDate)).Show();
             this.DataContext = this.collections ;
         }
 

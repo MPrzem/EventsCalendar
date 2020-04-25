@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Calendar
 {
@@ -21,26 +24,49 @@ namespace Calendar
         }
 
     }
-    public class TypeProperties///Obiekt tej kasy tworzony na podstawie typów wydarzen zdefiniowanych przez użytkownika
+    public class TypeProperties : INotifyPropertyChanged///Obiekt tej kasy tworzony na podstawie typów wydarzen zdefiniowanych przez użytkownika
     {
-        public String ColorOnCalendar { get; private set; }
-        public String ColorOnList { get; private set; }
-        public String TypeName { get; private set; }
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        public TypeProperties(string colorOnCalendar, string colorOnList, string typeName)
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
-            ColorOnCalendar = colorOnCalendar;
-            ColorOnList = colorOnList;
-            TypeName = "Group: "+typeName;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        private string colorOnCalendar;
+        private string colorOnList;
+        private string typeName;
+
+
+        public String ColorOnCalendar { get { return colorOnCalendar; } set { colorOnCalendar = value; OnPropertyChanged(); } }
+        public String ColorOnList { get { return colorOnList; } set { colorOnList = value; OnPropertyChanged(); } }
+        public String TypeName { get { return typeName; } set { typeName = value; OnPropertyChanged(); } }
+
+        public TypeProperties(string _colorOnCalendar, string _colorOnList, string _typeName)
+        {
+            ColorOnCalendar = _colorOnCalendar;
+            ColorOnList = _colorOnList;
+            TypeName = "Group: "+ _typeName;
         }
 
     }
-    public class IndividualEventProperties///Te pobierane z bazy danych
+    public class IndividualEventProperties : INotifyPropertyChanged///Obiekt tej kasy tworzony na podstawie typów wydarzen zdefiniowanych przez użytkownika
     {
-        public String Name { get; private set; }
-        public DateTime TimeStart { get; private set; }
-        public DateTime TimeEnd { get; private set; }
-        public String Note { get; private set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }///Te pobierane z bazy danych
+        private string name;
+        private DateTime timeStart;
+        private DateTime timeEnd;
+        private string note;
+
+        public String Name { get { return name; } set { name = value; OnPropertyChanged(); } }
+        public DateTime TimeStart { get { return timeStart; } set { timeStart = value; OnPropertyChanged(); } }
+        public DateTime TimeEnd { get { return timeEnd; } set { timeEnd = value; OnPropertyChanged(); } }
+        public String Note { get { return note; } set { note = value; OnPropertyChanged(); } }
 
         public IndividualEventProperties(string name,DateTime start,DateTime end, string Note)
         {

@@ -1,0 +1,35 @@
+﻿<Window x:Class="Calendar.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calendar"
+        mc:Ignorable="d"
+        Title="Window1" Height="250" Width="300">
+    <Grid Background="#FF2D2D30">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="37*"/>
+            <RowDefinition Height="37*"/>
+            <RowDefinition Height="37*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="57*"/>
+        </Grid.RowDefinitions>
+        <TextBox Foreground="Black" Text="{Binding Path=typ_prop.TypeName}" Grid.Column="1"/>
+        <Label Content="Typ Wydarzenia" Grid.Column="0" Grid.Row="0"/>
+        <Label Content="Kolor na Liscie" Grid.Row="1" Grid.Column="0"/>
+        <TextBox Text="{Binding Path=typ_prop.ColorOnList,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Column="1" Grid.Row="1"/>
+        <Label Content="Nazwa" Grid.Column="0" Grid.Row="2"/>
+        <TextBox Text="{Binding Path=indiv_prop.Name,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" />
+        <Label Content="Czas startu" Grid.Column="0" Grid.Row="3" />
+        <DatePicker x:Name="startpicker" Grid.Row="3" Grid.Column="1" SelectedDate="{Binding Path=indiv_prop.TimeStart, Mode=TwoWay}"/>
+        <Label Content="Czas startu" Grid.Column="0" Grid.Row="4" />
+        <DatePicker x:Name="endpicker" Grid.Row="4" Grid.Column="1" SelectedDate="{Binding Path=indiv_prop.TimeEnd, Mode=TwoWay}"/>
+        <Label Content="Notka" Grid.Row="5" Grid.Column="0"/>
+        <TextBox Text="{Binding Path=indiv_prop.Note,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="5" Grid.Column="1" />
+    </Grid>
+</Window>
