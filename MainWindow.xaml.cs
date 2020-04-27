@@ -41,7 +41,7 @@ namespace Calendar
             GetProperlyDirectory();
             if (CalendarContol.SelectedDate == null)
                 CalendarContol.SelectedDate = DateTime.Now;
-                (new Window1(CalendarContol.SelectedDate)).Show();
+
             this.DataContext = this.collections ;
         }
 
@@ -152,33 +152,30 @@ namespace Calendar
                 sW.Show();      
         }
 
-        private void button_Click_1(object sender, RoutedEventArgs e)
+
+        public void refresh_Event_list(DateTime? date)
         {
+
             collections.ClearDailyEvents();
             BazaDanychEntities context = new BazaDanychEntities();
-            //context.EventsTypes.Add(new EventsTypes() { Color1 = "Blue", Color2 = "Blue", Id = 1, Name = "Typ1" });
-           // context.SaveChanges();
-           /// context.Events.Add(new Events() { Name = "Takietam", Id = 1, StartDate = new DateTime(2019, 12, 11), EndDate = new DateTime(), TypeID = 1, Note= "SASDasd" });
-            //context.SaveChanges();
-            DateTime date = new DateTime(2019, 12, 11);
-            var akuku  = context.Events.Where(s => s.StartDate ==date);
+
+
+
+
+            var akuku = context.Events.Where(s => s.StartDate == date);
             collections.FillDailyEvents(akuku);
-            
-         }
-
-        private void EventsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        }
+        public void EventsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-            collections.ClearDailyEvents();
-            BazaDanychEntities context = new BazaDanychEntities();
-
             var calendar = sender as System.Windows.Controls.Calendar;
-               
 
-                            var akuku = context.Events.Where(s => s.StartDate == calendar.SelectedDate);
-            collections.FillDailyEvents(akuku);
+             refresh_Event_list(calendar.SelectedDate);
 
+        }
+
+        private void Add_Event_Click(object sender, RoutedEventArgs e)
+        {
+            (new Window1(CalendarContol.SelectedDate, collections, CalendarContol, refresh_Event_list)).Show();
         }
     }
 }
-///Ogarniete dodanie Entity, standardowego uzytkownika, nadanie mu prawa do INSERT,SELECT,DELETE,UPDATE do tabeli events. Teraz bedzie jazda z zalogowaniem sie do niego.

@@ -38,9 +38,10 @@
                             <Image Source="/Images/menu.png" Stretch="Fill" />
 
                         </MenuItem.Icon>
-                        <MenuItem Background="#FF2D2D30">
+                        <MenuItem Background="#FF2D2D30" Click="Add_Event_Click">
                             <MenuItem.Header>
                                 <TextBlock Text="Dodaj Wydarzenie" Foreground="White" />
+                                
                             </MenuItem.Header>
                         </MenuItem >
                         <MenuItem Background="#FF2D2D30">

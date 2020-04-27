@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calendar"
         mc:Ignorable="d"
-        Title="Window1" Height="250" Width="300">
+        Title="Window1" Height="242" Width="300" ResizeMode="NoResize">
+    <StackPanel Height="Auto" Background="#FF252526" >
     <Grid Background="#FF2D2D30">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -18,18 +19,45 @@
             <RowDefinition Height="25*"/>
             <RowDefinition Height="26*"/>
             <RowDefinition Height="57*"/>
+                <RowDefinition/>
+                <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBox Foreground="Black" Text="{Binding Path=typ_prop.TypeName}" Grid.Column="1"/>
-        <Label Content="Typ Wydarzenia" Grid.Column="0" Grid.Row="0"/>
-        <Label Content="Kolor na Liscie" Grid.Row="1" Grid.Column="0"/>
-        <TextBox Text="{Binding Path=typ_prop.ColorOnList,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Column="1" Grid.Row="1"/>
-        <Label Content="Nazwa" Grid.Column="0" Grid.Row="2"/>
-        <TextBox Text="{Binding Path=indiv_prop.Name,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" />
-        <Label Content="Czas startu" Grid.Column="0" Grid.Row="3" />
-        <DatePicker x:Name="startpicker" Grid.Row="3" Grid.Column="1" SelectedDate="{Binding Path=indiv_prop.TimeStart, Mode=TwoWay}"/>
-        <Label Content="Czas startu" Grid.Column="0" Grid.Row="4" />
-        <DatePicker x:Name="endpicker" Grid.Row="4" Grid.Column="1" SelectedDate="{Binding Path=indiv_prop.TimeEnd, Mode=TwoWay}"/>
-        <Label Content="Notka" Grid.Row="5" Grid.Column="0"/>
-        <TextBox Text="{Binding Path=indiv_prop.Note,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="5" Grid.Column="1" />
+            <ComboBox  Grid.Column="1" Grid.Row="6" ContextMenuOpening="ComboBox_ContextMenuOpening" DropDownOpened="ComboBox_DropDownOpened" x:Name="typessControl">
+                <ComboBox.ItemContainerStyle>
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="Background" Value="#FF2D2D30"/>
+                        <Setter Property="BorderBrush" Value="#FF2D2D30"/>
+                    </Style>
+                </ComboBox.ItemContainerStyle>
+                <ComboBox.ItemTemplate  >
+                    <DataTemplate >
+                        <Border BorderBrush="Black" BorderThickness="1" Width="{Binding RelativeSource={RelativeSource FindAncestor, 
+AncestorType={x:Type ComboBox}}, Path=ActualWidth}" Background="{Binding ColorOnList}" VerticalAlignment="Stretch" >
+                        <StackPanel >
+                            <TextBlock Text="{Binding ColorOnCalendar}"/>
+                            <TextBlock Text="{Binding ColorOnList}"/>
+                            <TextBlock Text="{Binding TypeName}"/>
+                        </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Label Background="#FF2D2D30" Foreground="#FFC7C7C7" Content="Typ Wydarzenia" Grid.Column="0" Grid.Row="6"/>
+            
+        <Label Background="#FF2D2D30" Foreground="#FFC7C7C7" Content="Nazwa" Grid.Column="0" Grid.Row="0"/>
+            <TextBox Background="#FF2D2D30" Foreground="#FFC7C7C7" Text="{Binding Path=indiv_prop.Name,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" />
+            <Label Background="#FF2D2D30" Foreground="#FFC7C7C7" Content="Data startu" Grid.Column="0" Grid.Row="1" />
+            <DatePicker Background="#FF2D2D30" Foreground="#FFC7C7C7" x:Name="startpicker" Grid.Row="1" Grid.Column="1" SelectedDate="{Binding Path=indiv_prop.TimeStart, Mode=TwoWay}"/>
+            <Label Content="Czas startu" Background="#FF2D2D30" Foreground="#FFC7C7C7" Grid.Row="2"/>
+            <TextBox x:Name="czasStartu" Background="#FF2D2D30" Foreground="#FFC7C7C7" Text="12:00" Grid.Column="1" Grid.Row="2" />
+            <Label Background="#FF2D2D30" Foreground="#FFC7C7C7" Content="Data Zakończenia" Grid.Column="0" Grid.Row="3" />
+            <DatePicker Background="#FF2D2D30" Foreground="#FFC7C7C7" x:Name="endpicker" Grid.Row="3" Grid.Column="1" SelectedDate="{Binding Path=indiv_prop.TimeEnd, Mode=TwoWay}"/>
+            <Label Content="Czas zakończenia" Background="#FF2D2D30" Foreground="#FFC7C7C7" Grid.Row="4"/>
+            <TextBox x:Name="czasKonca" Background="#FF2D2D30" Foreground="#FFC7C7C7" Text="12:00" Grid.Column="1" Grid.Row="4" />
+            <Label Background="#FF2D2D30" Foreground="#FFC7C7C7" Content="Notka" Grid.Row="5" Grid.Column="0"/>
+            <TextBox Background="#FF2D2D30" Foreground="#FFC7C7C7" Text="{Binding Path=indiv_prop.Note,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Row="5" Grid.Column="1" />
+
     </Grid>
+        <Button Click="Button_Click" Foreground="#FFC7C7C7" Height="Auto" Background="#FF252526" Content="Dodaj Wydarzenie"/>  
+        </StackPanel>
 </Window>

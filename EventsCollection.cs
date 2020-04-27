@@ -46,7 +46,7 @@ namespace Calendar
         {
             ColorOnCalendar = _colorOnCalendar;
             ColorOnList = _colorOnList;
-            TypeName = "Group: "+ _typeName;
+            TypeName = _typeName;
         }
 
     }
@@ -70,10 +70,10 @@ namespace Calendar
 
         public IndividualEventProperties(string name,DateTime start,DateTime end, string Note)
         {
-            Name ="Name: "+ name+" ";
+            Name =name;
             TimeStart = start;
             TimeEnd = end;
-            this.Note ="Note: "+ Note+" ";
+            this.Note = Note;
 
         }
 
@@ -96,8 +96,8 @@ namespace Calendar
         }
       public void AddDailyEvent(Events indiv_ev_info) // Nie ma co sie silić na stosowanie interfejsow, nie wyobrazam sobie rozbudowy. Raczej typy beda roznic sie tylko kolorami
         {
-            IndividualEventProperties indiv_tmp = new IndividualEventProperties(indiv_ev_info.Name, indiv_ev_info.StartDate, indiv_ev_info.EndDate, indiv_ev_info.Note);
-            TypeProperties type_tmp = new TypeProperties(indiv_ev_info.EventsTypes.Color1, indiv_ev_info.EventsTypes.Color2, indiv_ev_info.EventsTypes.Name);
+            IndividualEventProperties indiv_tmp = new IndividualEventProperties("Name: " + indiv_ev_info.Name, indiv_ev_info.StartDate, indiv_ev_info.EndDate, "Note: " + indiv_ev_info.Note);
+            TypeProperties type_tmp = new TypeProperties(indiv_ev_info.EventsTypes.Color1, indiv_ev_info.EventsTypes.Color2, "Name: " + indiv_ev_info.EventsTypes.Name); // Jego trzeba generować inaczej
             DailyEventList.Add(new CalendarEvent(type_tmp, indiv_tmp));
         }
 
