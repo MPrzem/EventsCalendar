@@ -62,18 +62,20 @@ namespace Calendar
         private DateTime timeStart;
         private DateTime timeEnd;
         private string note;
-
+        private int _ID;
         public String Name { get { return name; } set { name = value; OnPropertyChanged(); } }
         public DateTime TimeStart { get { return timeStart; } set { timeStart = value; OnPropertyChanged(); } }
         public DateTime TimeEnd { get { return timeEnd; } set { timeEnd = value; OnPropertyChanged(); } }
         public String Note { get { return note; } set { note = value; OnPropertyChanged(); } }
 
-        public IndividualEventProperties(string name,DateTime start,DateTime end, string Note)
+        public int ID { get { return _ID; } private set { _ID = value; OnPropertyChanged(); } }
+        public IndividualEventProperties(string name,DateTime start,DateTime end, string Note, int _id)
         {
             Name =name;
             TimeStart = start;
             TimeEnd = end;
             this.Note = Note;
+            ID = _id;
 
         }
 
@@ -96,8 +98,9 @@ namespace Calendar
         }
       public void AddDailyEvent(Events indiv_ev_info) // Nie ma co sie silić na stosowanie interfejsow, nie wyobrazam sobie rozbudowy. Raczej typy beda roznic sie tylko kolorami
         {
-            IndividualEventProperties indiv_tmp = new IndividualEventProperties("Name: " + indiv_ev_info.Name, indiv_ev_info.StartDate, indiv_ev_info.EndDate, "Note: " + indiv_ev_info.Note);
+            IndividualEventProperties indiv_tmp = new IndividualEventProperties("Name: " + indiv_ev_info.Name, indiv_ev_info.StartDate, indiv_ev_info.EndDate, "Note: " + indiv_ev_info.Note, indiv_ev_info.Id);
             TypeProperties type_tmp = new TypeProperties(indiv_ev_info.EventsTypes.Color1, indiv_ev_info.EventsTypes.Color2, "Name: " + indiv_ev_info.EventsTypes.Name); // Jego trzeba generować inaczej
+           
             DailyEventList.Add(new CalendarEvent(type_tmp, indiv_tmp));
         }
 

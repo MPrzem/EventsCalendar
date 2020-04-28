@@ -44,14 +44,14 @@
                                 
                             </MenuItem.Header>
                         </MenuItem >
-                        <MenuItem Background="#FF2D2D30">
-                            <MenuItem.Header>
-                                <TextBlock Text="Usuń Wydarzenie" Foreground="White"/>
+                        <MenuItem Background="#FF2D2D30" Click="Delete_Event_Click">
+                            <MenuItem.Header >
+                                <TextBlock Text="Usuń Wydarzenie" Foreground="White" />
                             </MenuItem.Header>
                         </MenuItem>
-                        <MenuItem Background="#FF2D2D30">
+                        <MenuItem Background="#FF2D2D30" Click="Add_Type">
                             <MenuItem.Header>
-                                <TextBlock Text="Edytuj Wydarzenie" Foreground="White"/>
+                                <TextBlock Text="Dodaj Typ Wydarzenia" Foreground="White"/>
                             </MenuItem.Header>
                         </MenuItem>
                     </MenuItem>

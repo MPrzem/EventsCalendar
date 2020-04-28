@@ -177,5 +177,16 @@ namespace Calendar
         {
             (new Window1(CalendarContol.SelectedDate, collections, CalendarContol, refresh_Event_list)).Show();
         }
+
+        private void Delete_Event_Click(object sender, RoutedEventArgs e)
+        {
+            (new Delete_Ev()).Show();
+
+        }
+
+        private void Add_Type(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
