@@ -28,20 +28,40 @@
 
 # Kontrola poprawnoœci zapytañ wysy³anych na serwer
 
+Program kontroluje, czy zapytanie wysy³ane na serwer odby³o siê poprawnie.
+
 ![](GitHubImages/gif_2.gif)
 
 # Dodawanie nowego wydarzenia
+
+#### Przy dodawaniu nowego wydarzenia mo¿emy wprowadzaæ takie jego atrybuty,  jak :
+- nazwa 
+- data startu
+- czas startu 
+- data zakoñczenia 
+- czas zakoñczenia 
+- notatka 
+- typ wydarzenia (wybierany z listy dostêpnych typów)
 
 ![](GitHubImages/gif_3.gif)
 
 # Usuwanie wydarzenia 
 
+Poni¿szy gif obrazuje, jak wygl¹da usuwanie wydarzenia 
+
 ![](GitHubImages/gif_4.gif)
 
 # Dodawanie nowego typu wydarzenia 
 
+#### Przy dodawaniu nowego typu wydarzenia mo¿emy wprowadzaæ takie jego atrybuty,  jak :
+- nazwa 
+- kolor na kalendarzu (nie aktywny)
+- kolor na liœcie
+
 ![](GitHubImages/gif_5.gif)
 
 # Usuwanie istniej¹cego typu wydarzenia 
+
+Poni¿szy gif obrazuje, jak wygl¹da usuwanie typu wydarzenia 
 
 ![](GitHubImages/gif_6.gif)
