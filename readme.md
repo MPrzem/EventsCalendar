@@ -1,6 +1,6 @@
 # Aplikacja "EventsCalendar"
 
-![Test Image 1](GitHubImages/zdjecie_apki.png)
+![Test Image 1](GitHubImages/zdjecie_apki.PNG)
 
 # Aktualna pogoda i jej prognoza 
 
