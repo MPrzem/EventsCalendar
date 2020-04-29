@@ -15,6 +15,7 @@ namespace Calendar
         /// </summary>
         public bool checkUrl(string url)
         {
+            // pomocnicza zmienna typu bool
             bool tmp;
 
             try

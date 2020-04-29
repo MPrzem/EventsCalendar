@@ -26,11 +26,10 @@ namespace Calendar
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        /// <summary>
-        /// WebClient dla aktualnej pogody 
-        /// </summary>
+        // WebClient dla aktualnej pogody 
         public WebClient web = new WebClient();
+
+        // Obiekt klasy obsługującej kolekcje wydarzeń oraz ich typów 
         public EventsCollections collections = new EventsCollections();
 
         /// <summary>
@@ -70,11 +69,13 @@ namespace Calendar
         }
 
         /// <summary>
-        /// Pobieranie pogody API , Json , OpenWeather
+        /// Pobieranie pogody za pomocą API ze strony OpenWeather, 
+        /// użycie JsonConvert do konwersji między typami JSON, a .Net 
         /// </summary>
 
         void getWeather(WebClient web)
         {
+            // Obiekt klasy handleWrongCitynames posiadający metodę do sprawdzania poprawności działania zapytania wysyłanego do serwera 
             handleWrongCitynames tmp = new handleWrongCitynames ();
 
             // CityName z TextBoxa , apiKey na stałe
@@ -84,7 +85,7 @@ namespace Calendar
             // Pełny link z apiKey oraz miastem
             string url = string.Format("http://api.openweathermap.org/data/2.5/weather?appid={0}&q={1}", apiKey, cityName);
 
-            // Obsługa błędu 404 oraz innych wynikajacych ze źle wpisanego miasta , a wlasciwie jego nazwy 
+            // Obsługa błędu 404 oraz innych wynikajacych ze źle wpisanego miasta lub jego braku wpisania 
             bool decision = tmp.checkUrl(url);
 
             if (decision == true)
@@ -96,24 +97,24 @@ namespace Calendar
             {
                     var json = web.DownloadString(url);
 
-                    // Json Conventer i kawał super roboty, który odwala w poniższej linijce
+                    // Użycie JsonConvert
                     var result = JsonConvert.DeserializeObject<weatherinfo.root>(json);
 
                     weatherinfo.root outPut = result;
 
-                    // Wyświetlanie danych o pogodzie
+                    // Przypisanie zmiennym odpowiednich wartości 
                     string temperature = string.Format("{0}", Math.Round(outPut.main.temp - 273, 2));
                     string humidity = string.Format("{0}", outPut.main.humidity);
                     string pressure = string.Format("{0}", outPut.main.pressure);
                     string windSpeed = string.Format("{0}", outPut.wind.speed);
 
+                    // Wyświetlanie danych o pogodzie w odpowiednich TextBoxach
                     temperatureTextBox.Text = temperature + " °C";
                     humidityTextBox.Text = humidity + " %";
                     pressureTextBox.Text = pressure + " hPa";
                     windSpeedTextBox.Text = windSpeed + " m/s";
 
-                    // Walka z wyświetlaniem obrazka pogody
-
+                    // Wyświetlenie obrazka ze strony z pogodą
                     string imageId = string.Format("{0}", outPut.weather[0].icon);
                     string fullImageUrl = string.Format("https://openweathermap.org/img/wn/{0}@2x.png", imageId);
 
@@ -137,7 +138,7 @@ namespace Calendar
         }
 
         /// <summary>
-        /// Otwieranie nowego okna z prognoza pogody
+        /// Otwieranie nowego okna z prognozą pogody
         /// </summary>
 
         private void ShowForecast_Click(object sender, RoutedEventArgs e)

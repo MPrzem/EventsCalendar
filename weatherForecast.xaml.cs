@@ -21,13 +21,17 @@ namespace Calendar
     /// </summary>
     public partial class weatherForecast : Window
     {
-        /// <summary>
-        /// WebClient dla prognozy pogody 
-        /// </summary>
+        
+        // WebClient dla prognozy pogody 
         public WebClient web2 = new WebClient();
 
         // Zmienna potrzebna do pobrania nazwy miasta z głównego okienka
         public string cityNameFromFirstPage { get; set; }
+
+        /// <summary>
+        /// Ustawienie odpowiednich atrybutów obiektu klasy przy użyciu 
+        /// konstruktora tej klasy 
+        /// </summary>
 
         public weatherForecast(string passCityName)
         {
@@ -37,18 +41,19 @@ namespace Calendar
 
             InitializeComponent();
 
-            // Żeby uniknąć sytuacji niepożądanej -> zamykamy okno główne, a child okno zostaje 
+            // Żeby uniknąć sytuacji niepożądanej -> zamykamy okno główne, a okno "dziecko" (child window) zostaje 
             Window mainWindow = Application.Current.MainWindow;
             if (mainWindow != null)
                 mainWindow.Closed += (s, e) => Close();
 
+            // Uruchomienie metody pobierającej prognozę pogody
             getForecast(cityNameFromFirstPage,web2);
         }
 
         /// <summary>
-        /// Pobieranie prognozy pogody API , Json , OpenWeather
+        /// Pobieranie prognozy pogody za pomocą API ze strony OpenWeather, 
+        /// użycie JsonConvert do konwersji między typami JSON, a .Net 
         /// </summary>
-
         void getForecast(string cityNameFromFirstPage,WebClient web)
         {
 
@@ -56,9 +61,10 @@ namespace Calendar
                 string apiKey = "8b7c4545e3874014261a301b43f9d144";
                 string url = string.Format("http://api.openweathermap.org/data/2.5/forecast?q={0}&appid={1}", cityNameFromFirstPage, apiKey);
 
+                // Obiekt klasy handleWrongCitynames posiadający metodę do sprawdzania poprawności działania zapytania wysyłanego do serwera 
                 handleWrongCitynames tmp = new handleWrongCitynames();
 
-                // Obsluga bledu 404 oraz innych  innych wynikajacych ze źle wpisanego miasta , a wlasciwie jego nazwy 
+                // Obsluga bledu 404 oraz innych  innych wynikajacych ze źle wpisanego miasta miasta lub jego braku wpisania 
                 bool decision = tmp.checkUrl(url);
 
                 if (decision == true)
@@ -73,43 +79,53 @@ namespace Calendar
 
                         var json = web.DownloadString(url);
 
-                        // Json Conventer i kawał super roboty, który odwala w poniższej linijce
+                        // Użycie JsonConvert
                         var result = JsonConvert.DeserializeObject<weatherforecast.RootObject>(json);
 
                         weatherforecast.RootObject outPut = result;
 
-                        // Zwracanie danych na temat prognozy pogody 
+                        // Zwracanie danych na temat prognozy pogody dla konkretnej daty 
+                        // za pomocą odnoszenia się do odpowiedniego elementu w liście 
 
-                        string forecastDate = result.list[7].dt_txt;
-                        string forecastTemperature = string.Format("{0}", Math.Round(result.list[7].main.temp - 273, 2));
-                        string forecastPressure = string.Format("{0}", result.list[7].main.pressure);
-                        string forecastWind = string.Format("{0}", result.list[7].wind.speed);
+                        // Index [7]
+                        string forecastDate = outPut.list[7].dt_txt;
+                        string forecastTemperature = string.Format("{0}", Math.Round(outPut.list[7].main.temp - 273, 2));
+                        string forecastPressure = string.Format("{0}", outPut.list[7].main.pressure);
+                        string forecastWind = string.Format("{0}", outPut.list[7].wind.speed);
                         forecast1TextBox.Text = forecastDate + "  ;  Temperatura: " + forecastTemperature + " °C" + "  ;  Ciśnienie: " + forecastPressure + " hPa" + "  ;  Wiatr: " + forecastWind + " m/s";
+                        // end
 
-                        forecastDate = result.list[15].dt_txt;
-                        forecastTemperature = string.Format("{0}", Math.Round(result.list[15].main.temp - 273, 2));
-                        forecastPressure = string.Format("{0}", result.list[15].main.pressure);
-                        forecastWind = string.Format("{0}", result.list[15].wind.speed);
+                        // Index [15]
+                        forecastDate = outPut.list[15].dt_txt;
+                        forecastTemperature = string.Format("{0}", Math.Round(outPut.list[15].main.temp - 273, 2));
+                        forecastPressure = string.Format("{0}", outPut.list[15].main.pressure);
+                        forecastWind = string.Format("{0}", outPut.list[15].wind.speed);
                         forecast2TextBox.Text = forecastDate + "  ;  Temperatura: " + forecastTemperature + " °C" + "  ;  Ciśnienie: " + forecastPressure + " hPa" + "  ;  Wiatr: " + forecastWind + " m/s";
+                        // end
 
-                        forecastDate = result.list[23].dt_txt;
-                        forecastTemperature = string.Format("{0}", Math.Round(result.list[23].main.temp - 273, 2));
-                        forecastPressure = string.Format("{0}", result.list[23].main.pressure);
-                        forecastWind = string.Format("{0}", result.list[23].wind.speed);
+                        // Index [23]
+                        forecastDate = outPut.list[23].dt_txt;
+                        forecastTemperature = string.Format("{0}", Math.Round(outPut.list[23].main.temp - 273, 2));
+                        forecastPressure = string.Format("{0}", outPut.list[23].main.pressure);
+                        forecastWind = string.Format("{0}", outPut.list[23].wind.speed);
                         forecast3TextBox.Text = forecastDate + "  ;  Temperatura: " + forecastTemperature + " °C" + "  ;  Ciśnienie: " + forecastPressure + " hPa" + "  ;  Wiatr: " + forecastWind + " m/s";
+                        // end
 
-                        forecastDate = result.list[31].dt_txt;
-                        forecastTemperature = string.Format("{0}", Math.Round(result.list[31].main.temp - 273, 2));
-                        forecastPressure = string.Format("{0}", result.list[31].main.pressure);
-                        forecastWind = string.Format("{0}", result.list[31].wind.speed);
+                        // Index [31]
+                        forecastDate = outPut.list[31].dt_txt;
+                        forecastTemperature = string.Format("{0}", Math.Round(outPut.list[31].main.temp - 273, 2));
+                        forecastPressure = string.Format("{0}", outPut.list[31].main.pressure);
+                        forecastWind = string.Format("{0}", outPut.list[31].wind.speed);
                         forecast4TextBox.Text = forecastDate + "  ;  Temperatura: " + forecastTemperature + " °C" + "  ;  Ciśnienie: " + forecastPressure + " hPa" + "  ;  Wiatr: " + forecastWind + " m/s";
+                        // end
 
-                        forecastDate = result.list[39].dt_txt;
-                        forecastTemperature = string.Format("{0}", Math.Round(result.list[39].main.temp - 273, 2));
-                        forecastPressure = string.Format("{0}", result.list[39].main.pressure);
-                        forecastWind = string.Format("{0}", result.list[39].wind.speed);
+                        // Index [39]
+                        forecastDate = outPut.list[39].dt_txt;
+                        forecastTemperature = string.Format("{0}", Math.Round(outPut.list[39].main.temp - 273, 2));
+                        forecastPressure = string.Format("{0}", outPut.list[39].main.pressure);
+                        forecastWind = string.Format("{0}", outPut.list[39].wind.speed);
                         forecast5TextBox.Text = forecastDate + "  ;  Temperatura: " + forecastTemperature + " °C" + "  ;  Ciśnienie: " + forecastPressure + " hPa" + "  ;  Wiatr: " + forecastWind + " m/s";
-                    
+                        // end
                 }
             
         }
