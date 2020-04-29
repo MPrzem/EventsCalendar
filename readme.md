@@ -2,7 +2,14 @@
 
 ![Test Image 1](GitHubImages/zdjecie_apki.PNG)
 
-#### Funkcjonalnoœæ aplikacji : 
+|  Nr.   |   | |
+| :------------: | :------------: | :------------: |
+| 1 | Autorzy  | Przemys³aw Malec \\ Przemys³aw Widz|
+| 2 | Jêzyk programowania | C# |
+| 3 |  | |
+| 4 |  | |
+
+## Funkcjonalnoœæ aplikacji : 
 - mo¿liwoœæ sprawdzenia pogody oraz jej prognozy dla dowolnego miejsca na Ziemi dziêki API udostêpnionemu przez serwis https://openweathermap.org/ oraz zapytañ sieciowych zaimplementowanych w aplikacji 
 - wygodny podgl¹d wydarzeñ w kalendarzu dziêki zastosowaniu ikonki **Calendar**
 - estetyczny podgl¹d pogody stworzony z myœl¹ o wygodzie korzystania
@@ -45,7 +52,7 @@ Program kontroluje, czy zapytanie wysy³ane na serwer odby³o siê poprawnie.
 
 ![](GitHubImages/gif_3.gif)
 
-# Usuwanie wydarzenia 
+# Usuwanie istniej¹cego wydarzenia 
 
 Poni¿szy gif obrazuje, jak wygl¹da usuwanie wydarzenia 
 
