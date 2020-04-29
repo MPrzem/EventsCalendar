@@ -1,6 +1,6 @@
 # Aplikacja "EventsCalendar"
 
-![Test Image 1](GitHubImages/zdjecie_apki.PNG)
+![Test Image 1](GitHubImages/zdj_dot_net_1.PNG)
 
 |  Nr.   |   | |
 | :------------: | :------------: | :------------: |
