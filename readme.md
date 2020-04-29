@@ -4,7 +4,7 @@
 
 |  Nr.   |   | |
 | :------------: | :------------: | :------------: |
-| 1 | Autorzy  | Przemys³aw Malec \\ Przemys³aw Widz|
+| 1 | Autorzy  | Przemys³aw Malec    Przemys³aw Widz|
 | 2 | Jêzyk programowania | C# |
 | 3 |  | |
 | 4 |  | |
