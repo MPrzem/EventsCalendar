@@ -10,6 +10,7 @@
 | 4 | NuGet   Packages | Newtonsoft.Json |
 | 5 | Po³¹czenie z baz¹ danych | Entity Framework|
 | 6 | IDE | Microsoft Visual Studio 2019 |
+| 7 | API Pogoda | https://openweathermap.org/ |
 
 ## Funkcjonalnoœæ aplikacji : 
 - mo¿liwoœæ sprawdzenia pogody oraz jej prognozy dla dowolnego miejsca na Ziemi dziêki API udostêpnionemu przez serwis https://openweathermap.org/ oraz zapytañ sieciowych zaimplementowanych w aplikacji 
