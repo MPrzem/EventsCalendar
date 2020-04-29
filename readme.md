@@ -4,10 +4,12 @@
 
 |  Nr.   |   | |
 | :------------: | :------------: | :------------: |
-| 1 | Autorzy  | Przemys³aw Malec    Przemys³aw Widz|
+| 1 | Autorzy  | Przemys³aw Malec, Przemys³aw Widz|
 | 2 | Jêzyk programowania | C# |
-| 3 |  | |
-| 4 |  | |
+| 3 |  Technologia  | Aplikacja WPF (.NET Framework)  |
+| 4 | NuGet   Packages | Newtonsoft.Json |
+| 5 | Po³¹czenie z baz¹ danych | Entity Framework|
+| 6 | IDE | Microsoft Visual Studio 2019 |
 
 ## Funkcjonalnoœæ aplikacji : 
 - mo¿liwoœæ sprawdzenia pogody oraz jej prognozy dla dowolnego miejsca na Ziemi dziêki API udostêpnionemu przez serwis https://openweathermap.org/ oraz zapytañ sieciowych zaimplementowanych w aplikacji 
