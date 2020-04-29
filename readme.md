@@ -11,5 +11,8 @@ email chyba znikn¹³ :-(
 Jsos to c# , konwenter z ktorego korzysta³em:
 link : http://json2csharp.com/
 
+# Aktualna pogoda i jej prognoza 
+
+![](GitHubImages/gif_1.gif)
 
 
