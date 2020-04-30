@@ -34,13 +34,13 @@
 - ciœnienie (jednostka jak wy¿ej)
 - prêdkoœæ wiatru (jednostka jak wy¿ej)
 
-![](GitHubImages/gif_1.gif)
+![](GitHubImages/gif_1_new.gif)
 
 # Kontrola poprawnoœci zapytañ wysy³anych na serwer
 
 Program kontroluje, czy zapytanie wysy³ane na serwer odby³o siê poprawnie.
 
-![](GitHubImages/gif_2.gif)
+![](GitHubImages/gif_2_new.gif)
 
 # Dodawanie nowego wydarzenia
 

@@ -28,6 +28,9 @@ namespace Calendar
         // Zmienna potrzebna do pobrania nazwy miasta z głównego okienka
         public string cityNameFromFirstPage { get; set; }
 
+        // Zmienna potrzebna do przechodzenia do kolejnych stron prognozy pogody
+        public int tmpInt { get; set; }
+
         /// <summary>
         /// Ustawienie odpowiednich atrybutów obiektu klasy przy użyciu 
         /// konstruktora tej klasy 
@@ -38,6 +41,7 @@ namespace Calendar
             // Przypisanie odpowiednim zmiennym w klasie odpowiednich wartosci
             this.cityNameFromFirstPage = passCityName;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            this.tmpInt = 1;
 
             InitializeComponent();
 
@@ -47,14 +51,14 @@ namespace Calendar
                 mainWindow.Closed += (s, e) => Close();
 
             // Uruchomienie metody pobierającej prognozę pogody
-            getForecast(cityNameFromFirstPage,web2);
+            getForecast(cityNameFromFirstPage,web2,tmpInt);
         }
 
         /// <summary>
         /// Pobieranie prognozy pogody za pomocą API ze strony OpenWeather, 
         /// użycie JsonConvert do konwersji między typami JSON, a .Net 
         /// </summary>
-        void getForecast(string cityNameFromFirstPage,WebClient web)
+        void getForecast(string cityNameFromFirstPage,WebClient web,int tmpInt)
         {
 
                 // ApiKey na stałe oraz pełny link z apiKey oraz miastem
@@ -87,52 +91,47 @@ namespace Calendar
                         // Zwracanie danych na temat prognozy pogody dla konkretnej daty 
                         // za pomocą odnoszenia się do odpowiedniego elementu w liście 
 
-                        // Index [7]
-                        string forecastDate = outPut.list[7].dt_txt;
-                        string forecastTemperature = string.Format("{0}", Math.Round(outPut.list[7].main.temp - 273, 2));
-                        string forecastPressure = string.Format("{0}", outPut.list[7].main.pressure);
-                        string forecastWind = string.Format("{0}", outPut.list[7].wind.speed);
+                        string forecastDate = outPut.list[tmpInt].dt_txt;
+                        string forecastTemperature = string.Format("{0}", Math.Round(outPut.list[tmpInt].main.temp - 273, 2));
+                        string forecastPressure = string.Format("{0}", outPut.list[tmpInt].main.pressure);
+                        string forecastWind = string.Format("{0}", outPut.list[tmpInt].wind.speed);
                         forecast1TextBox.Text = forecastDate + "  ;  Temperatura: " + forecastTemperature + " °C" + "  ;  Ciśnienie: " + forecastPressure + " hPa" + "  ;  Wiatr: " + forecastWind + " m/s";
-                        // end
+                        tmpInt += 1;
 
-                        // Index [15]
-                        forecastDate = outPut.list[15].dt_txt;
-                        forecastTemperature = string.Format("{0}", Math.Round(outPut.list[15].main.temp - 273, 2));
-                        forecastPressure = string.Format("{0}", outPut.list[15].main.pressure);
-                        forecastWind = string.Format("{0}", outPut.list[15].wind.speed);
+                        forecastDate = outPut.list[tmpInt].dt_txt;
+                        forecastTemperature = string.Format("{0}", Math.Round(outPut.list[tmpInt].main.temp - 273, 2));
+                        forecastPressure = string.Format("{0}", outPut.list[tmpInt].main.pressure);
+                        forecastWind = string.Format("{0}", outPut.list[tmpInt].wind.speed);
                         forecast2TextBox.Text = forecastDate + "  ;  Temperatura: " + forecastTemperature + " °C" + "  ;  Ciśnienie: " + forecastPressure + " hPa" + "  ;  Wiatr: " + forecastWind + " m/s";
-                        // end
+                        tmpInt += 1;        
 
-                        // Index [23]
-                        forecastDate = outPut.list[23].dt_txt;
-                        forecastTemperature = string.Format("{0}", Math.Round(outPut.list[23].main.temp - 273, 2));
-                        forecastPressure = string.Format("{0}", outPut.list[23].main.pressure);
-                        forecastWind = string.Format("{0}", outPut.list[23].wind.speed);
+                        forecastDate = outPut.list[tmpInt].dt_txt;
+                        forecastTemperature = string.Format("{0}", Math.Round(outPut.list[tmpInt].main.temp - 273, 2));
+                        forecastPressure = string.Format("{0}", outPut.list[tmpInt].main.pressure);
+                        forecastWind = string.Format("{0}", outPut.list[tmpInt].wind.speed);
                         forecast3TextBox.Text = forecastDate + "  ;  Temperatura: " + forecastTemperature + " °C" + "  ;  Ciśnienie: " + forecastPressure + " hPa" + "  ;  Wiatr: " + forecastWind + " m/s";
-                        // end
+                        tmpInt += 1;
 
-                        // Index [31]
-                        forecastDate = outPut.list[31].dt_txt;
-                        forecastTemperature = string.Format("{0}", Math.Round(outPut.list[31].main.temp - 273, 2));
-                        forecastPressure = string.Format("{0}", outPut.list[31].main.pressure);
-                        forecastWind = string.Format("{0}", outPut.list[31].wind.speed);
+                        forecastDate = outPut.list[tmpInt].dt_txt;
+                        forecastTemperature = string.Format("{0}", Math.Round(outPut.list[tmpInt].main.temp - 273, 2));
+                        forecastPressure = string.Format("{0}", outPut.list[tmpInt].main.pressure);
+                        forecastWind = string.Format("{0}", outPut.list[tmpInt].wind.speed);
                         forecast4TextBox.Text = forecastDate + "  ;  Temperatura: " + forecastTemperature + " °C" + "  ;  Ciśnienie: " + forecastPressure + " hPa" + "  ;  Wiatr: " + forecastWind + " m/s";
-                        // end
+                        tmpInt += 1;    
 
-                        // Index [39]
-                        forecastDate = outPut.list[39].dt_txt;
-                        forecastTemperature = string.Format("{0}", Math.Round(outPut.list[39].main.temp - 273, 2));
-                        forecastPressure = string.Format("{0}", outPut.list[39].main.pressure);
-                        forecastWind = string.Format("{0}", outPut.list[39].wind.speed);
+                        forecastDate = outPut.list[tmpInt].dt_txt;
+                        forecastTemperature = string.Format("{0}", Math.Round(outPut.list[tmpInt].main.temp - 273, 2));
+                        forecastPressure = string.Format("{0}", outPut.list[tmpInt].main.pressure);
+                        forecastWind = string.Format("{0}", outPut.list[tmpInt].wind.speed);
                         forecast5TextBox.Text = forecastDate + "  ;  Temperatura: " + forecastTemperature + " °C" + "  ;  Ciśnienie: " + forecastPressure + " hPa" + "  ;  Wiatr: " + forecastWind + " m/s";
-                        // end
+                        tmpInt += 1;
                 }
             
         }
 
         /// <summary>
-        /// Milisekundy na date, okazuje sie po zrozumieniu klasy wygenerowanej z neta 
-        /// Json to C# , ze chyba funkcja ta jest jednak niepotrzebna
+        /// Milisekundy na typ date, okazuje sie po zrozumieniu Api,
+        /// ze chyba funkcja ta jest jednak niepotrzebna
         /// </summary>
         DateTime getDate(double millisecound)
         {
@@ -146,11 +145,21 @@ namespace Calendar
         /// <summary>
         /// Metoda zamykająca okno z prognoza pogody
         /// </summary>
-
-
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        /// <summary>
+        /// Metoda wyświetlająca kolejne daty prognozy pogody w bieżącym oknie 
+        /// </summary>
+        private void Next_Click(object sender, RoutedEventArgs e)
+        {
+            // "Przechodzenie" za pomocą operacji modulo między 0 a 39 dostepnymi elementami typu pogoda w tablicy prognozy pogody
+            tmpInt += 5;
+            tmpInt = tmpInt % 35;
+
+            getForecast(cityNameFromFirstPage, web2, tmpInt);
         }
     }
 }
