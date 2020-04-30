@@ -26,24 +26,28 @@ namespace Calendar
     /// </summary>
     public partial class MainWindow : Window
     {
+
         /// <summary>
         /// WebClient dla aktualnej pogody 
         /// </summary>
         public WebClient web = new WebClient();
+        public EventsCollections collections = new EventsCollections();
+
 
         public MainWindow()
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             GetProperlyDirectory();
+            if (CalendarContol.SelectedDate == null)
+                CalendarContol.SelectedDate = DateTime.Now;
+
+            this.DataContext = this.collections ;
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            EventsDBContext db = new EventsDBContext();
-            var contents = db.EventsTables;
-            foreach (var item in contents)
-                ;//label.Content = item.Day;
+
         }
         /// <summary>
         /// Jedyne co tu sie dzieje to pobranie rekordow(wszystkich=jednego)
@@ -147,6 +151,50 @@ namespace Calendar
                 weatherForecast sW = new weatherForecast(cityName);
                 sW.Show();      
         }
+
+
+        public void refresh_Event_list(DateTime? date)
+        {
+
+            collections.ClearDailyEvents();
+            BazaDanychEntities context = new BazaDanychEntities();
+
+
+
+
+            var akuku = context.Events.Where(s => s.StartDate == date);
+            collections.FillDailyEvents(akuku);
+        }
+        public void EventsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var calendar = sender as System.Windows.Controls.Calendar;
+
+             refresh_Event_list(calendar.SelectedDate);
+
+        }
+
+        private void Add_Event_Click(object sender, RoutedEventArgs e)
+        {
+            (new Window1(CalendarContol.SelectedDate, collections, CalendarContol, refresh_Event_list)).Show();
+        }
+
+        private void Delete_Event_Click(object sender, RoutedEventArgs e)
+        {
+            (new Delete_Ev()).Show();
+
+        }
+
+        private void Add_Type(object sender, RoutedEventArgs e)
+        {
+            (new Type_Add()).Show();
+        }
+
+        private void Del_Type(object sender, RoutedEventArgs e)
+        {
+
+            (new Del_Ev()).Show();
+        }
+
+
     }
 }
-///Ogarniete dodanie Entity, standardowego uzytkownika, nadanie mu prawa do INSERT,SELECT,DELETE,UPDATE do tabeli events. Teraz bedzie jazda z zalogowaniem sie do niego.
