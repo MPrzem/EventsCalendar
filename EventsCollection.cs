@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace Calendar
-{
+{/// <summary>
+/// Klasa zawiera definicje wydarzenia. Składa się z dwóch części: Indywidualnych cech wydarzenia oraz cech wynikającyh z typu.
+/// </summary>
     public class CalendarEvent
     {
         private TypeProperties _typ_prop;
@@ -24,6 +26,9 @@ namespace Calendar
         }
 
     }
+    /// <summary>
+    /// Składowe typu kolory oraz nazwa typu. Klasa implementuje INotifyPropertyChanged ponieważ współpracuje z GUI
+    /// </summary>
     public class TypeProperties : INotifyPropertyChanged///Obiekt tej kasy tworzony na podstawie typów wydarzen zdefiniowanych przez użytkownika
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -52,6 +57,10 @@ namespace Calendar
         }
 
     }
+
+    /// <summary>
+    /// Składowe indywidulane nazwa czas startu i końca  oraz notka do wydarzenia. Klasa implementuje INotifyPropertyChanged ponieważ współpracuje z GUI
+    /// </summary>
     public class IndividualEventProperties : INotifyPropertyChanged///Obiekt tej kasy tworzony na podstawie typów wydarzen zdefiniowanych przez użytkownika
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -83,6 +92,9 @@ namespace Calendar
 
 
     }
+    /// <summary>
+    /// Klasa obsługująca kolekcje wydarzeń oraz typów wydarzeń(to nie okazało się potrzebne)
+    /// </summary>
 
     public class EventsCollections
     {
@@ -92,43 +104,35 @@ namespace Calendar
 
         public ObservableCollection<CalendarEvent> DailyEventList { get { return _DailyEventList; } set { value = _DailyEventList; }}
         public ObservableCollection<TypeProperties> TypesList { get { return _TypesList; } set { value = _TypesList; } }
-
+        /// <summary> 
+        /// Metoda wypełnia kolekcje wydarzeń danymi z bazy danych.
+        /// </summary>
+        /// <param name="events"></param>
         public void FillDailyEvents(IQueryable<Events> events)
         {
             events.ToList().ForEach(AddDailyEvent);
 
         }
-      public void AddDailyEvent(Events indiv_ev_info) // Nie ma co sie silić na stosowanie interfejsow, nie wyobrazam sobie rozbudowy. Raczej typy beda roznic sie tylko kolorami
+        /// <summary>
+        /// Dodaje pojedyńczy event do kolekcji.
+        /// </summary>
+        /// <param name="ev"></param>
+      public void AddDailyEvent(Events ev) // Nie ma co sie silić na stosowanie interfejsow, nie wyobrazam sobie rozbudowy. Raczej typy beda roznic sie tylko kolorami
         {
-            IndividualEventProperties indiv_tmp = new IndividualEventProperties("Name: " + indiv_ev_info.Name, indiv_ev_info.StartDate, indiv_ev_info.EndDate, "Note: " + indiv_ev_info.Note, indiv_ev_info.Id);
-            TypeProperties type_tmp = new TypeProperties(indiv_ev_info.EventsTypes.Color1, indiv_ev_info.EventsTypes.Color2, "Name: " + indiv_ev_info.EventsTypes.Name,0); // Jego trzeba generować inaczej
+            IndividualEventProperties indiv_tmp = new IndividualEventProperties("Name: " + ev.Name, ev.StartDate, ev.EndDate, "Note: " + ev.Note, ev.Id);
+            TypeProperties type_tmp = new TypeProperties(ev.EventsTypes.Color1, ev.EventsTypes.Color2, "Name: " + ev.EventsTypes.Name,0); // Jego trzeba generować inaczej
            
             DailyEventList.Add(new CalendarEvent(type_tmp, indiv_tmp));
         }
 
+        /// <summary>
+        /// Metoda zeruje liste wydarzeń
+        /// </summary>
       public void ClearDailyEvents()
         {
             DailyEventList.Clear();
         }
-       
-        
-        
-        
-        /// <summary>
-         /// indexOfType indexOfType in TypesList( W przy tworzeniu maja byc wyswietlane nazwy typów wg kolejnosci z TypesList(właściwośc TypeName)
-         /// </summary>
-         /// <param name="indexOfType"></param>
-        public void MakeEvent(ushort indexOfType, IndividualEventProperties properties)
-        {
-            /// Stworzyć, dodać do bazy danych za pomocą entity i wstawić do DailiEventList
-            
-        }
-
-
-
-
-        ///W pliku xaml Dodać datatemplate https://www.youtube.com/watch?v=YW3gq-zyzoE&t=623s 
-        /// 
+      
 
     }
 

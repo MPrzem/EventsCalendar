@@ -33,7 +33,9 @@ namespace Calendar
         public WebClient web = new WebClient();
         public EventsCollections collections = new EventsCollections();
 
-
+        /// <summary>
+        /// Konstruktor klasy. Centruje okno, ustawia aktualną date w kalendarzu oraz dodaje do DataContextu colekcje danych
+        /// </summary>
         public MainWindow()
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -45,10 +47,6 @@ namespace Calendar
             this.DataContext = this.collections ;
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
         /// <summary>
         /// Jedyne co tu sie dzieje to pobranie rekordow(wszystkich=jednego)
         /// z BD przez entity po nacisnieciu przycisku
@@ -139,7 +137,7 @@ namespace Calendar
         }
 
         /// <summary>
-        /// Otwieranie nowegho okna z prognoza pogody
+        /// Otwieranie nowego okna z prognoza pogody
         /// </summary>
 
         private void ShowForecast_Click(object sender, RoutedEventArgs e)
@@ -152,6 +150,10 @@ namespace Calendar
                 sW.Show();      
         }
 
+        /// <summary>
+        /// Wczytanie aktualnych danych do kolekcji wydarzeń
+        /// </summary>
+        /// <param name="date"></param>
 
         public void refresh_Event_list(DateTime? date)
         {
@@ -165,6 +167,11 @@ namespace Calendar
             var akuku = context.Events.Where(s => s.StartDate == date);
             collections.FillDailyEvents(akuku);
         }
+        /// <summary>
+        /// Reakcja na zmiane daty w kalendarzu. Powoduje wyświetlenie odpowiednich wydarzeń
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void EventsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var calendar = sender as System.Windows.Controls.Calendar;
@@ -172,23 +179,40 @@ namespace Calendar
              refresh_Event_list(calendar.SelectedDate);
 
         }
+        /// <summary>
+        /// Uruchomienie okna dodania wydarzenia.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void Add_Event_Click(object sender, RoutedEventArgs e)
         {
             (new Window1(CalendarContol.SelectedDate, collections, CalendarContol, refresh_Event_list)).Show();
         }
-
+        /// <summary>
+        /// Uruchomienie okna usuwania wydarzenia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Delete_Event_Click(object sender, RoutedEventArgs e)
         {
             (new Delete_Ev()).Show();
 
         }
-
+        /// <summary>
+        /// Uruchomienie okna dodania typu.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Add_Type(object sender, RoutedEventArgs e)
         {
             (new Type_Add()).Show();
         }
-
+        /// <summary>
+        /// Uruchomienie okna usuwania typu.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Del_Type(object sender, RoutedEventArgs e)
         {
 

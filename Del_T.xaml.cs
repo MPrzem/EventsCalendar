@@ -20,33 +20,45 @@ namespace Calendar
     /// </summary>
     public partial class Del_Ev : Window
     {
-
+        /// <summary>
+        /// Kolekcja z zaimplementowanym INotifyPropertyChanged wypełniana z bazy danych
+        /// </summary>
         ObservableCollection<TypeProperties> types = new ObservableCollection<TypeProperties>();
-
+        /// <summary>
+        /// Konstruktor dodający kolekcje do DataContextu
+        /// </summary>
         public Del_Ev()
         {
             InitializeComponent();
-            ComboBox_ContextMenuOpening();
+            ComboboxRefresh();
             this.DataContext = types;
         }
-
-        private void ComboBox_ContextMenuOpening()
+        /// <summary>
+        /// Metoda odswieżająca liste typów w Comboboxie
+        /// </summary>
+        private void ComboboxRefresh()
         {
             types.Clear();
             BazaDanychEntities context = new BazaDanychEntities();
             var akuku = context.EventsTypes;
-            akuku.ToList().ForEach(tmfunc);
+            akuku.ToList().ForEach(s => types.Add(new TypeProperties(s.Color1, s.Color2, s.Name, s.Id)));
 
         }
-        void tmfunc(EventsTypes s)
-        {
-            types.Add(new TypeProperties(s.Color1, s.Color2, s.Name, s.Id));
-        }
+        /// <summary>
+        /// Reakcja na event rozwiniecia listy ComboBoxa
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void typessControl_DropDownOpened(object sender, EventArgs e)
         {
-            ComboBox_ContextMenuOpening();
+            ComboboxRefresh();
         }
+        /// <summary>
+        /// Usunięcie typu wydarzenia. Za pomocą kwerendy, przed usunięciem typu usuwane są wszystkie wydarzenia z nim stowarzyszone.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -61,7 +73,7 @@ namespace Calendar
                 context.Database.ExecuteSqlCommand(query1, selectedItem.ID);
                 context.Database.ExecuteSqlCommand(query, selectedItem.ID);
                 context.SaveChanges();
-                ComboBox_ContextMenuOpening();
+                ComboboxRefresh();
                 if (index > 0)
                     typessControl.SelectedItem = typessControl.Items[index - 1];
 

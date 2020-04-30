@@ -23,7 +23,11 @@ namespace Calendar
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Reakcja na nacisniecie przycisku dodawania typu. Tworzy nowy typ uzupełniając go danymi z ColorPickerów i TextBoxa
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             BazaDanychEntities context = new BazaDanychEntities();
