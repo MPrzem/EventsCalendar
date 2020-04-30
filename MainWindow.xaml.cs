@@ -186,7 +186,15 @@ namespace Calendar
 
         private void Add_Type(object sender, RoutedEventArgs e)
         {
-
+            (new Type_Add()).Show();
         }
+
+        private void Del_Type(object sender, RoutedEventArgs e)
+        {
+
+            (new Del_Ev()).Show();
+        }
+
+
     }
 }

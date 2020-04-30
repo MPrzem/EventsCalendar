@@ -28,7 +28,7 @@ namespace Calendar
         Action<DateTime?> refresh;
         public Window1(DateTime? selectedDate, EventsCollections collections, System.Windows.Controls.Calendar _calendar, Action<DateTime?> _refresh)
         {
-            typeproperties = new TypeProperties("Blue", "Blue", "Typ Wydarzenia");
+            typeproperties = new TypeProperties("Blue", "Blue", "Typ Wydarzenia", 0);
             individualEventProperties = new IndividualEventProperties("Nazwa", new DateTime(), new DateTime(),"Notka",0);
             calendarEvent = new CalendarEvent(typeproperties, individualEventProperties);
             this.DataContext = calendarEvent;
@@ -72,17 +72,19 @@ namespace Calendar
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-          
+            if (typessControl.SelectedItem != null)
+            {
+                var type = typessControl.SelectedItem as TypeProperties;
+                BazaDanychEntities context = new BazaDanychEntities();
 
-BazaDanychEntities context = new BazaDanychEntities();
 
+                bool refreshRequired = calendar.SelectedDate == calendarEvent.indiv_prop.TimeStart;
+                context.Events.Add(new Events() { Name = calendarEvent.indiv_prop.Name, StartDate = Add_Time(czasStartu.Text, individualEventProperties.TimeStart), EndDate = Add_Time(czasKonca.Text, individualEventProperties.TimeEnd), TypeID = type.ID, Note = calendarEvent.indiv_prop.Note });
+                context.SaveChanges();
+                if (refreshRequired)
+                    refresh(calendar.SelectedDate);
 
-            bool refreshRequired = calendar.SelectedDate == calendarEvent.indiv_prop.TimeStart;
-            context.Events.Add(new Events() { Name =calendarEvent.indiv_prop.Name, StartDate = Add_Time(czasStartu.Text, individualEventProperties.TimeStart), EndDate = Add_Time(czasKonca.Text, individualEventProperties.TimeEnd), TypeID = typessControl.SelectedIndex, Note =calendarEvent.indiv_prop.Note });
-            context.SaveChanges();
-            if(refreshRequired)
-            refresh(calendar.SelectedDate);
-
+            }
         }
 
         private void ComboBox_ContextMenuOpening(object sender, ContextMenuEventArgs e)
@@ -97,7 +99,7 @@ BazaDanychEntities context = new BazaDanychEntities();
         }
         void tmfunc(EventsTypes s)
         {
-            types.Add(new TypeProperties(s.Color1, s.Color2, s.Name));
+            types.Add(new TypeProperties(s.Color1, s.Color2, s.Name,s.Id));
         
     }
         private void ComboBox_DropDownOpened(object sender, EventArgs e)

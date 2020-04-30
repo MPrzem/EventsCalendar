@@ -54,6 +54,15 @@
                                 <TextBlock Text="Dodaj Typ Wydarzenia" Foreground="White"/>
                             </MenuItem.Header>
                         </MenuItem>
+
+
+                        <MenuItem Background="#FF2D2D30" Click="Del_Type">
+                            <MenuItem.Header>
+                                <TextBlock Text="Usun Typ Wydarzenia" Foreground="White"/>
+                            </MenuItem.Header>
+                        </MenuItem>
+
+
                     </MenuItem>
                 </Menu>
                 <Canvas  HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding Source={x:Static sys:DateTime.Now }}" Grid.Column="1" Margin="186,10,361.5,48">

@@ -23,5 +23,16 @@ namespace Calendar
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            BazaDanychEntities context = new BazaDanychEntities();
+            context.EventsTypes.Add(new EventsTypes() { Name = type_name.Text, Color1 = cp1.SelectedColorText, Color2 = cp2.SelectedColorText });
+            context.SaveChanges();
+
+
+
+
+        }
     }
 }

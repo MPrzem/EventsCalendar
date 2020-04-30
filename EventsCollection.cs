@@ -36,17 +36,19 @@ namespace Calendar
         private string colorOnCalendar;
         private string colorOnList;
         private string typeName;
+        public int ID;
 
 
         public String ColorOnCalendar { get { return colorOnCalendar; } set { colorOnCalendar = value; OnPropertyChanged(); } }
         public String ColorOnList { get { return colorOnList; } set { colorOnList = value; OnPropertyChanged(); } }
         public String TypeName { get { return typeName; } set { typeName = value; OnPropertyChanged(); } }
 
-        public TypeProperties(string _colorOnCalendar, string _colorOnList, string _typeName)
+        public TypeProperties(string _colorOnCalendar, string _colorOnList, string _typeName,int id)
         {
             ColorOnCalendar = _colorOnCalendar;
             ColorOnList = _colorOnList;
             TypeName = _typeName;
+            ID = id;
         }
 
     }
@@ -99,7 +101,7 @@ namespace Calendar
       public void AddDailyEvent(Events indiv_ev_info) // Nie ma co sie silić na stosowanie interfejsow, nie wyobrazam sobie rozbudowy. Raczej typy beda roznic sie tylko kolorami
         {
             IndividualEventProperties indiv_tmp = new IndividualEventProperties("Name: " + indiv_ev_info.Name, indiv_ev_info.StartDate, indiv_ev_info.EndDate, "Note: " + indiv_ev_info.Note, indiv_ev_info.Id);
-            TypeProperties type_tmp = new TypeProperties(indiv_ev_info.EventsTypes.Color1, indiv_ev_info.EventsTypes.Color2, "Name: " + indiv_ev_info.EventsTypes.Name); // Jego trzeba generować inaczej
+            TypeProperties type_tmp = new TypeProperties(indiv_ev_info.EventsTypes.Color1, indiv_ev_info.EventsTypes.Color2, "Name: " + indiv_ev_info.EventsTypes.Name,0); // Jego trzeba generować inaczej
            
             DailyEventList.Add(new CalendarEvent(type_tmp, indiv_tmp));
         }
