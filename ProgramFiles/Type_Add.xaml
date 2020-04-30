@@ -1,0 +1,30 @@
+﻿<Window x:Class="Calendar.Type_Add"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calendar" xmlns:xctk1="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="Type_Add" Height="170" Width="800" ResizeMode="NoResize">
+    <StackPanel Height="Auto" Background="#FF252526" >
+        <Grid Background="#FF2D2D30" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Background="#FF2D2D30" Foreground="#FFC7C7C7" Content="Nazwa Typu" Grid.Column="0" Grid.Row="0"/>
+            <TextBox x:Name="type_name" Background="#FF2D2D30" Foreground="#FFC7C7C7" Grid.Column="1" Text="Nazwa Typu"></TextBox>
+            <Label Background="#FF2D2D30" Foreground="#FFC7C7C7" Content="Kolor na Kalendarzu(nie aktywny)" Grid.Column="0" Grid.Row="1"/>
+            <xctk1:ColorPicker Name="cp1" Grid.Column="1" Grid.Row="1" DisplayColorAndName="True" AvailableColorsSortingMode="HueSaturationBrightness" Background="#FFC7C7C7"  VerticalAlignment="Bottom" ></xctk1:ColorPicker>
+            <xctk1:ColorPicker Name="cp2" Grid.Column="1" Grid.Row="2" DisplayColorAndName="True" AvailableColorsSortingMode="HueSaturationBrightness" Background="#FFC7C7C7" ></xctk1:ColorPicker>
+
+            <Label Background="#FF2D2D30" Foreground="#FFC7C7C7" Content="Kolor na liscie" Grid.Column="0" Grid.Row="2"/>
+        </Grid>
+        <Button Background="#FF2D2D30" Foreground="#FFC7C7C7" Click="Button_Click" Content="Dodaj Typ" Height="60" FontSize="22"/>
+    </StackPanel>
+</Window>
